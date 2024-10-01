@@ -1,2 +1,2 @@
 # smokejumper
-A collection of load and scale testing tolls for kubernetes  
+A collection of load and scale testing tools for kubernetes  
