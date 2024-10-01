@@ -42,7 +42,7 @@ spec:
                   }
                 }
 
-        - path: /etc/modprobe.d/infinidat.conf
+        - path: /etc/modprobe.d/quantastor.conf
           mode: 0644
           contents:
             source:
@@ -54,7 +54,7 @@ spec:
                 # Cisco
                 options fnic fnic_max_qdepth=128
 
-        - path: /etc/udev/rules.d/99-infinidat-queue.rules
+        - path: /etc/udev/rules.d/99-osnexus-queue.rules
           mode: 0644
           contents:
             source:
