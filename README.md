@@ -19,12 +19,12 @@ A collection of load and scale testing tools for kubernetes
 
 # Testing order
 
-1.K8s VM Scheduling distrobution
+1. K8s VM Scheduling distrobution
    - Max paths per host
 2. Iterate Batch (w/Active IO; Rescan impact)
-Node Failure/Reboot (k8s)
-   - Graceful/Abrupt3. 
-4. API Server (iBox)5. 
+3. Node Failure/Reboot (k8s)
+   - Graceful/Abrupt
+4. API Server (iBox)
 6. CSI-Clone vs. Snapshot
 
 # Helpful links
