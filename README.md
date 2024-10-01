@@ -25,6 +25,7 @@ A collection of load and scale testing tools for kubernetes
 2. Iterate Batch
    - w/Active IO
    - Rescan impact (Some sort of rescan delay?)
+   - How to hint to the CSI that it should map storage on the same node we are annotating the VM to be scheduled on
 4. Node Failure/Reboot (k8s)
    - Graceful/Abrupt
 5. API Server (iBox)
