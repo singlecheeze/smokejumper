@@ -11,13 +11,28 @@ stringData:
     chpasswd: { expire: False }
     ssh_pwauth: true
     timezone: "America/New_York"
+    write_files:
+    - path: /etc/systemd/system/fio-load.service
+      permissions: "0755"
+      content: |
+        # Systemd unit file for running the fio-load service
+        # Use to view service logs:
+        # journalctl -u fio-load
+        
+        [Unit]
+        Description=FIO Load Service
+        
+        [Service]
+        ExecStart=fio --name=randrw --rw=randrw --direct=1 --ioengine=libaio --bs=16k --numjobs=8 --rwmixread=90 --size=1G --runtime=600 --group_reporting
+        
+        Restart=on-failure
+        RestartSec=3
     runcmd:
         # https://www.reddit.com/r/bash/comments/hblss4/logging_cloudinit_script_to_console/
         - exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
         - sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config
         - grubby --args=ipv6.disable=1 --update-kernel=ALL
-        - dnf install sysstat fio -y
-        - fio --name=randrw --rw=randrw --direct=1 --ioengine=libaio --bs=16k --numjobs=8 --rwmixread=90 --size=1G --runtime=600 --group_reporting --daemonize
+        - dnf install sysstat fio -y        - 
         - iostat -N -h -x -t -m
     
 ---
