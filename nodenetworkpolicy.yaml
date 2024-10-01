@@ -1,0 +1,15 @@
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: worker-0-dns-testing
+spec:
+  desiredState:
+    dns-resolver:
+      config:
+        search:
+          - kube-wt-01a.lab.wt.us.infinidat.com
+          - wt.us.infinidat.com
+        server:
+          - 172.31.0.10
+  nodeSelector:
+    node-role.kubernetes.io/master: ''
