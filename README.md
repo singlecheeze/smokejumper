@@ -1,7 +1,7 @@
 # smokejumper
 A collection of load and scale testing tools for kubernetes  
 
-# Testing order
+# Build order
 
 1. Deploy Bare Metal Cluster
 2. Deployed MachineConfig with Multipah configuration in the nodes
@@ -9,11 +9,23 @@ A collection of load and scale testing tools for kubernetes
    - 3.1 Configured Infinidat StorageClass (Default, permissions)
    - 3.2 Configure Infinidat SnapshotClass
 4. Configured Registry
-5. Deployed the OpenShift Virtualization Operator
+5. Set RHCOS "HighBurst"
+6. Set "Max LUN IDs"
+7. Deployed the OpenShift Virtualization Operator
    - 5.1 Created the Virtualization instance (Enable VM creation)
-6. Deployed the NMState Operator
+8. Deployed the NMState Operator
    - 6.1 Created a NMState DNS configuration for the nodes (Due to long DNS search domain entries; limit 251 chars)
-7. Deployed kube-burner
+9. Deployed kube-burner
+
+# Testing order
+
+1. Node Failure/Reboot (k8s)
+   - Graceful/Abrupt
+3. K8s VM Scheduling distrobution
+   - Max paths per host
+4. API Server (iBox)
+5. Iterate Batch (w/Active IO)
+6. CSI-Clone vs. Snapshot
 
 # Helpful links
 Some work pulled from:
