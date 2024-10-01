@@ -12,9 +12,12 @@ stringData:
     ssh_pwauth: true
     timezone: "America/New_York"
     runcmd:
+        - exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
         - sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config
         - grubby --args=ipv6.disable=1 --update-kernel=ALL
-        - fio --name=randrw --rw=randrw --direct=1 --ioengine=libaio --bs=16k --numjobs=8 --rwmixread=90 --size=1G --runtime=600 --group_reporting
+        - dnf install sysstat
+        - fio --name=randrw --rw=randrw --direct=1 --ioengine=libaio --bs=16k --numjobs=8 --rwmixread=90 --size=1G --runtime=600 --group_reporting --daemonize
+        - iostat -N -h -x -t -m
     
 ---
 apiVersion: kubevirt.io/v1
