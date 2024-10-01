@@ -42,7 +42,7 @@ spec:
                   }
                 }
 
-        - path: /etc/modprobe.d/infinidat.conf
+        - path: /etc/modprobe.d/infinibox.conf
           mode: 0644
           contents:
             source:
