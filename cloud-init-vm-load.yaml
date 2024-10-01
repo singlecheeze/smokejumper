@@ -1,0 +1,93 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: load-cloud-init-secret
+  namespace: vm-density
+stringData:
+  userData: |
+    #cloud-config
+    user: admin
+    password: Welcome11
+    chpasswd: { expire: False }
+    ssh_pwauth: true
+    timezone: "America/New_York"
+    runcmd:
+        - sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config
+        - grubby --args=ipv6.disable=1 --update-kernel=ALL
+        - fio --name=randrw --rw=randrw --direct=1 --ioengine=libaio --bs=16k --numjobs=8 --rwmixread=90 --size=1G --runtime=600 --group_reporting
+    
+---
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: {{ item.1 }}
+  namespace: vm-density
+spec:
+  dataVolumeTemplates:
+    - kind: DataVolume
+      metadata:
+        name: "{{ item.1 }}-pvc"
+      spec:
+        sourceRef:
+          kind: DataSource
+          name: fedora
+          namespace: openshift-virtualization-os-images
+        storage:
+          storageClassName: ocs-storagecluster-ceph-rbd
+          resources:
+            requests:
+              storage: 5Gi
+  runStrategy: RerunOnFailure
+  template:
+    metadata:
+      labels:
+        externalService: "{{ item.1 }}-ssh-service"
+    spec:
+      domain:
+        clock:
+          timer: {}
+          timezone: America/New York
+        cpu:
+          sockets: 2
+          cores: 1
+          threads: 1
+        devices:
+          disks:
+            - disk:
+                bus: virtio
+              name: rootdisk
+            - disk:
+                bus: virtio
+              name: cloudinitdisk
+          interfaces:
+            - masquerade: {}
+              model: virtio
+              name: default
+          networkInterfaceMultiqueue: true
+          rng: {}
+        features:
+          acpi:
+            enabled: true
+          smm:
+            enabled: true
+        firmware:
+          bootloader:
+            efi:
+              secureBoot: false
+        machine:
+          type: pc-q35-rhel8.6.0
+        resources:
+          requests:
+            memory:  2Gi
+      networks:
+        - name: default
+          pod: {}
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: rootdisk
+          dataVolume:
+            name: "{{ item.1 }}-pvc"
+        - name: cloudinitdisk
+          cloudInitNoCloud:
+            secretRef:
+              name: load-cloud-init-secret
