@@ -1,7 +1,7 @@
 apiVersion: machineconfiguration.openshift.io/v1
 kind: MachineConfig
 metadata:
-  name: 99-worker-multipath-fc-udev-infinidat
+  name: 99-worker-multipath-fc-udev-infinibox
   labels:
     machineconfiguration.openshift.io/role: worker
 spec:
