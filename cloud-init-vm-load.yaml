@@ -23,7 +23,7 @@ stringData:
         Description=FIO Load Service
         
         [Service]
-        ExecStart=fio --name=randrw --rw=randrw --direct=1 --ioengine=libaio --bs=16k --numjobs=8 --rwmixread=90 --size=1G --runtime=600 --group_reporting
+        ExecStart=fio --name=randrw --rw=randrw --direct=1 --ioengine=libaio --bs=16k --numjobs=2 --rwmixread=90 --size=512M --runtime=600 --group_reporting
         
         Restart=on-failure
         RestartSec=3
