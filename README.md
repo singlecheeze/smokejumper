@@ -24,7 +24,7 @@ A collection of load and scale testing tools for kubernetes
 3. K8s VM Scheduling distrobution
    - Max paths per host
 4. API Server (iBox)
-5. Iterate Batch (w/Active IO)
+5. Iterate Batch (w/Active IO; Rescan impact)
 6. CSI-Clone vs. Snapshot
 
 # Helpful links
