@@ -32,6 +32,7 @@ A collection of load and scale testing tools for kubernetes
 Some work pulled from:
 https://hackmd.io/@johnsimcall/BkElnsvUA  
 https://access.redhat.com/solutions/7051974  
+https://access.redhat.com/solutions/26017  
 
 FIO Cheat Sheet:
 https://gist.github.com/githubfoam/a678cfc813c7ede6ca9ecb93e34edd8e
