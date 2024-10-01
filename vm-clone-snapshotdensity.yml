@@ -1,0 +1,67 @@
+metricsEndpoints:
+  - indexer:
+      type: local
+global:
+  measurements:
+  - name: vmiLatency
+jobs:
+  - name: dv-source
+    jobType: create
+    jobIterations: {{.ITERATIONS}}
+    namespacedIterations: true
+    namespace: vm-density
+    qps: {{.QPS}}
+    burst: {{.BURST}}
+    maxWaitTimeout: 1h
+    jobPause: 1m
+    objects:
+    - objectTemplate: templates/dv-source.yml
+      replicas: 1
+      inputVars:
+        url: https://dl.fedoraproject.org/pub/fedora/linux/releases/40/Cloud/x86_64/images/Fedora-Cloud-Base-Generic.x86_64-40-1.14.qcow2
+        storage: 10Gi
+        storageclass: rhibox-fc
+        volumemode: Block
+    - objectTemplate: templates/dv-volsnap.yml
+      replicas: 1
+      inputVars:
+        volsnapclass: ibox-snapshotclass
+  - name: vm-density
+    jobType: create
+    jobIterations: {{.ITERATIONS}}
+    qps: {{.QPS}}
+    burst: {{.BURST}}
+    namespacedIterations: true
+    namespace: vm-density
+    maxWaitTimeout: 1h
+    jobPause: 1m
+    objects:
+    - objectTemplate: templates/vm-dv.yml
+      replicas: {{ .OBJ_REPLICAS }}
+      inputVars:
+        name: vm-dv-density
+        OS: fedora
+        cpuCores: 1
+        memory: 1G
+        storage: 10Gi
+        storageclass: rhibox-fc
+        volumemode: Block
+        VMIrunning: true
+  - name: delete-job
+    jobType: delete
+    waitForDeletion: true
+    qps: {{.QPS}}
+    burst: {{.BURST}}
+    jobPause: 1m
+    objects:
+    - kind: VirtualMachine
+      labelSelector: {kube-burner-job: vm-density}
+      apiVersion: kubevirt.io/v1
+    - kind: VirtualMachineInstance
+      labelSelector: {kube-burner-job: vm-density}
+      apiVersion: kubevirt.io/v1
+    - kind: Pod
+      labelSelector: {kubevirt.io: virt-launcher}
+      apiVersion: v1
+    - kind: Namespace
+      labelSelector: {kube-burner-job: vm-density}

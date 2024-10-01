@@ -1,0 +1,91 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  labels:
+    kubevirt-vm: vm-{{.name}}-{{.Replica}}
+  name: {{.name}}-{{.Replica}}
+spec:
+  ## controls if the VM boots up on creation:
+  running: {{.VMIrunning}}
+  template:
+    metadata:
+      labels:
+        kubevirt-vm: vm-{{.name}}-{{.Replica}}
+        kubevirt.io/os: {{.OS}}
+    spec:
+      domain:
+        ## vcpus:
+        cpu:
+          cores: {{.cpuCores}}
+       ## create 3 VM disks (rootdisk clone, cloudinit, blank)
+        devices:
+          disks:
+          - disk:
+              bus: virtio
+            name: rootdisk
+          - disk:
+              bus: virtio
+            name: cloudinitdisk
+          - disk:
+              bus: virtio
+            name: blank-1
+          ## default network interface:
+          interfaces:
+          - masquerade: {}
+            model: virtio
+            name: default
+          networkInterfaceMultiqueue: true
+          rng: {}
+        ## VM memory size:
+        resources:
+          requests:
+            memory: {{.memory}}
+      ## default pod network:
+      networks:
+      - name: default
+        pod: {}
+      ## volume definitions for the VM disks:
+      volumes:
+      - dataVolume:
+          name: dvclone-{{.Replica}}
+        name: rootdisk
+      - cloudInitNoCloud:
+          userData: |-
+            #cloud-config
+            password: fedora
+            chpasswd: { expire: False }
+        name: cloudinitdisk
+      - dataVolume:
+          name: blank-1-{{.Replica}}
+        name: blank-1
+  ## Data Volume population of the volumes:
+  dataVolumeTemplates:
+  ## rootdisk:
+  - metadata:
+      name: dvclone-{{.Replica}}
+    spec:
+     source:
+       pvc:
+        name: dv-source
+     storage:
+       accessModes:
+        - ReadWriteMany
+       resources:
+        requests:
+          storage: {{.storage}}
+       storageClassName: {{.storageclass}}
+       volumeMode: {{.volumemode}}
+  ## blank disk:
+  - metadata:
+      name: blank-1-{{.Replica}}
+    spec:
+     source:
+       blank: {}
+     pvc:
+       accessModes:
+        - ReadWriteMany
+       resources:
+        requests:
+          storage: 3Gi
+       storageClassName: {{.storageclass}}
+       volumeMode: {{.volumemode}}
