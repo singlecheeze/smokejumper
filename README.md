@@ -1,7 +1,7 @@
 # smokejumper
 A collection of load and scale testing tools for kubernetes  
 
-# TEsting order
+# Testing order
 
 1. Deploy Bare Metal Cluster
 2. Deployed MachineConfig with Multipah configuration in the nodes
