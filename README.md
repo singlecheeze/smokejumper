@@ -11,11 +11,12 @@ A collection of load and scale testing tools for kubernetes
 4. Configured Registry
 5. Set RHCOS "HighBurst"
 6. Set "Max LUN IDs"
-7. Deployed the OpenShift Virtualization Operator
+7. Set "Max Pods"
+8. Deployed the OpenShift Virtualization Operator
    - 5.1 Created the Virtualization instance (Enable VM creation)
-8. Deployed the NMState Operator
+9. Deployed the NMState Operator
    - 6.1 Created a NMState DNS configuration for the nodes (Due to long DNS search domain entries; limit 251 chars)
-9. Deployed kube-burner
+10. Deployed kube-burner
 
 # Testing order
 
