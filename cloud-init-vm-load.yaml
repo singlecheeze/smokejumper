@@ -23,7 +23,12 @@ stringData:
         Description=FIO Load Service
         
         [Service]
+        Type=oneshot
+        RemainAfterExit=true
         ExecStart=fio --name=randrw --rw=randrw --direct=1 --ioengine=libaio --bs=16k --numjobs=2 --rwmixread=90 --size=512M --runtime=600 --group_reporting
+
+        [Install]
+        WantedBy=multi-user.target
         
         Restart=on-failure
         RestartSec=3
