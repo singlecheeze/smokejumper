@@ -61,7 +61,7 @@ https://git.kernel.org/pub/scm/linux/storage/multipath/hare/multipath-tools.git/
 ```
 multipath -r dm-0
 ```
-*Force Rescan:* 
+*Force Rescan:*  
 https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/storage_administration_guide/scanning-storage-interconnects#scanning-storage-interconnects  
 https://access.redhat.com/solutions/3941  
 https://access.redhat.com/solutions/320883  
