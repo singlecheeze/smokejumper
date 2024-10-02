@@ -32,8 +32,10 @@ A collection of load and scale testing tools for kubernetes
 5. API Server (iBox)
 6. CSI-Clone vs. Snapshot
 
-# Helpful links
-Some work pulled from:
+# Helpful links  
+https://docs.oracle.com/en/operating-systems/oracle-linux/6/admin/query-udevandsysfs.html  
+
+Some work pulled from:  
 https://hackmd.io/@johnsimcall/BkElnsvUA  
 https://access.redhat.com/solutions/7051974  
 https://access.redhat.com/solutions/26017  
