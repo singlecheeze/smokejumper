@@ -3,7 +3,9 @@ https://ubuntu.com/server/docs/common-multipath-tasks-and-procedures
 
 *Helpful Script:*  
 ```
-# ./usr/bin/rescan-scsi-bus.sh
+./usr/bin/rescan-scsi-bus.sh
+```
+```
 Scanning SCSI subsystem for new devices
 Scanning host 0 for  SCSI target IDs 0 1 2 3 4 5 6 7, all LUNs
  Scanning for device 0 0 0 0 ...           
@@ -57,21 +59,25 @@ OLD: Host: scsi3 Channel: 00 Id: 00 Lun: 02
 *Force Rescan:*  
 https://git.kernel.org/pub/scm/linux/storage/multipath/hare/multipath-tools.git/commit/?id=a4d0b34e841aae7e0722ba532ca46ff78b0f106e  
 ```
-# multipath -r dm-0
+multipath -r dm-0
 ```
 https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/storage_administration_guide/scanning-storage-interconnects#scanning-storage-interconnects  
 https://access.redhat.com/solutions/3941  
 https://access.redhat.com/solutions/320883  
 ```
-# echo "c t l" >  /sys/class/scsi_host/hostH/scan
+echo "c t l" >  /sys/class/scsi_host/hostH/scan
+```
 For example:
-# echo "- - 2" >  /sys/class/scsi_host/host3/scan
+```
+echo "- - 2" >  /sys/class/scsi_host/host3/scan
 ```
 You can determine the H,c,t by referring to another device that is already configured on the same path as the new device. This can be done with commands such as lsscsi, scsi_id, multipath -l, and ls -l /dev/disk/by-*. This information, plus the LUN number of the new device, can be used as shown above to probe and configure that path to the new device.  
 
 *Show paths and when they will be checked next:*  
 ```
-# multipathd -k
+multipathd -k
+```
+```
 multipathd> show paths
 hcil    dev     dev_t pri dm_st  chk_st dev_st  next_check     
 1:0:0:0 sdb     8:16  1   undef  undef  unknown orphan         
@@ -86,8 +92,9 @@ hcil    dev     dev_t pri dm_st  chk_st dev_st  next_check
 ```
 *Query all udev attributes:*  
 ```
-# udevadm info --query=all --name=/dev/dm-0
-
+udevadm info --query=all --name=/dev/dm-0
+```
+```
 P: /devices/virtual/block/dm-0
 M: dm-0
 R: 0
@@ -130,8 +137,9 @@ E: CURRENT_TAGS=:systemd:
 ```
 *Walk a device:*  
 ```
-# udevadm info --attribute-walk --name=/dev/sdg 
-
+udevadm info --attribute-walk --name=/dev/sdg 
+```
+```
 Udevadm info starts with the device specified by the devpath and then
 walks up the chain of parent devices. It prints for every device
 found, all possible attributes in the udev rules key format.
