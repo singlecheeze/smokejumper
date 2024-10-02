@@ -56,11 +56,12 @@ OLD: Host: scsi3 Channel: 00 Id: 00 Lun: 02
 0 device(s) removed. 
 ```  
 
-*Force Rescan:*  
+*Force Devmap Reload:*  
 https://git.kernel.org/pub/scm/linux/storage/multipath/hare/multipath-tools.git/commit/?id=a4d0b34e841aae7e0722ba532ca46ff78b0f106e  
 ```
 multipath -r dm-0
 ```
+*Force Rescan:* 
 https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/storage_administration_guide/scanning-storage-interconnects#scanning-storage-interconnects  
 https://access.redhat.com/solutions/3941  
 https://access.redhat.com/solutions/320883  
