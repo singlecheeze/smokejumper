@@ -60,15 +60,17 @@ https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/storage
 https://access.redhat.com/solutions/3941  
 https://access.redhat.com/solutions/320883  
 ```
-multipath -r dm-0
+# multipath -r dm-0
 Or
-echo "c t l" >  /sys/class/scsi_host/hostH/scan
+# echo "c t l" >  /sys/class/scsi_host/hostH/scan
+For example:
+# echo "- - 2" >  /sys/class/scsi_host/host3/scan
 ```
 You can determine the H,c,t by referring to another device that is already configured on the same path as the new device. This can be done with commands such as lsscsi, scsi_id, multipath -l, and ls -l /dev/disk/by-*. This information, plus the LUN number of the new device, can be used as shown above to probe and configure that path to the new device.  
 
 *Show paths and when they will be checked next:*  
 ```
-sh-5.1# multipathd -k
+# multipathd -k
 multipathd> show paths
 hcil    dev     dev_t pri dm_st  chk_st dev_st  next_check     
 1:0:0:0 sdb     8:16  1   undef  undef  unknown orphan         
@@ -83,7 +85,7 @@ hcil    dev     dev_t pri dm_st  chk_st dev_st  next_check
 ```
 *Query all udev attributes:*  
 ```
-udevadm info --query=all --name=/dev/dm-0
+# udevadm info --query=all --name=/dev/dm-0
 
 P: /devices/virtual/block/dm-0
 M: dm-0
@@ -127,7 +129,7 @@ E: CURRENT_TAGS=:systemd:
 ```
 *Walk a device:*  
 ```
-sh-5.1# udevadm info --attribute-walk --name=/dev/sdg 
+# udevadm info --attribute-walk --name=/dev/sdg 
 
 Udevadm info starts with the device specified by the devpath and then
 walks up the chain of parent devices. It prints for every device
