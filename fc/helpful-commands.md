@@ -57,17 +57,13 @@ OLD: Host: scsi3 Channel: 00 Id: 00 Lun: 02
 ```  
 
 *Check File Descriptors:*  
+Multipath should have at least 2 FDs per path.
 ```
 ls -l /proc/$(cat /var/run/multipathd.pid)/fd | wc -l
 ```
-```
-14
-```
+Modern multipath will: "By removing max_fds from /etc/multipath.conf the default value 'max' will now be used, equivalent to the systemwide value in /proc/sys/fs/nr_open, which itself is calculated as 1024 * 1024 = 1048576 (as of Red Hat Enterprise Linux 6.3). This should be more than enough for most systems."
 ```
 cat /proc/sys/fs/nr_open
-```
-```
-1073741816
 ```
 
 *Force Devmap Reload:*  
