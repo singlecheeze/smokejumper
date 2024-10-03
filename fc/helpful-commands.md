@@ -59,8 +59,7 @@ OLD: Host: scsi3 Channel: 00 Id: 00 Lun: 02
 
 *Check Local Config:*  
 ```
-# multipathd -k
-multipathd> show config local
+# multipathd show config local
 defaults {
         verbosity 2
         polling_interval 5
@@ -125,8 +124,7 @@ defaults {
 
 *Show Multipath Topology JSON:*  
 ```
-# multipathd -k
-multipathd> show maps json
+# multipathd show maps json
 {
    "major_version": 0,
    "minor_version": 1,
