@@ -59,10 +59,13 @@ OLD: Host: scsi3 Channel: 00 Id: 00 Lun: 02
 *Check File Descriptors:*  
 ```
 ls -l /proc/$(cat /var/run/multipathd.pid)/fd | wc -l
+```
+```
 14
 ```
 ```
 cat /proc/sys/fs/nr_open
+```
 1073741816
 ```
 
