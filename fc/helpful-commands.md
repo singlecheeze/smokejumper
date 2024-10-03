@@ -57,6 +57,7 @@ OLD: Host: scsi3 Channel: 00 Id: 00 Lun: 02
 ```  
 
 *Check File Descriptors:*  
+https://access.redhat.com/solutions/3450832  
 Multipath should have at least 2 FDs per path.
 ```
 ls -l /proc/$(cat /var/run/multipathd.pid)/fd | wc -l
