@@ -23,10 +23,19 @@ spec:
                   device {
                     vendor "OSNEXUS"
                     product "QUANTASTOR"
-                    path_grouping_policy "group_by_prio"
-                    path_checker "tur"
-                    features 0
+                    getuid_callout "/lib/udev/scsi_id --whitelisted --replace-whitespace --device=/dev/%n"
+                    prio alua
                     hardware_handler "1 alua"
+                    path_grouping_policy group_by_prio
+                    failback immediate
+                    no_path_retry 10
+                    rr_min_io 100
+                    path_checker tur
+                    rr_weight uniform
+                  }
+                  device {
+                    
+                    features 0
                     prio "alua"
                     rr_weight "priorities"
                     no_path_retry "queue"
