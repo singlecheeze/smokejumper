@@ -56,6 +56,72 @@ OLD: Host: scsi3 Channel: 00 Id: 00 Lun: 02
 0 device(s) removed. 
 ```  
 
+*Check Local Config:*  
+```
+# multipathd -k
+multipathd> show config local
+defaults {
+        verbosity 2
+        polling_interval 5
+        max_polling_interval 20
+        reassign_maps "no"
+        multipath_dir "/lib64/multipath"
+        path_selector "service-time 0"
+        path_grouping_policy "failover"
+        uid_attribute "ID_SERIAL"
+        prio "const"
+        prio_args ""
+        features "0"
+        path_checker "tur"
+        alias_prefix "mpath"
+        failback "manual"
+        rr_min_io 1000
+        rr_min_io_rq 1
+        max_fds "max"
+        rr_weight "uniform"
+        queue_without_daemon "no"
+        allow_usb_devices "no"
+        flush_on_last_del "no"
+        user_friendly_names "yes"
+        fast_io_fail_tmo 5
+        bindings_file "/etc/multipath/bindings"
+        wwids_file "/etc/multipath/wwids"
+        prkeys_file "/etc/multipath/prkeys"
+        log_checker_err "always"
+        all_tg_pt "no"
+        retain_attached_hw_handler "yes"
+        detect_prio "yes"
+        detect_checker "yes"
+        force_sync "no"
+        strict_timing "no"
+        deferred_remove "no"
+        config_dir "/etc/multipath/conf.d"
+        delay_watch_checks "no"
+        delay_wait_checks "no"
+        san_path_err_threshold "no"
+        san_path_err_forget_rate "no"
+        san_path_err_recovery_time "no"
+        marginal_path_err_sample_time "no"
+        marginal_path_err_rate_threshold "no"
+        marginal_path_err_recheck_gap_time "no"
+        marginal_path_double_failed_time "no"
+        find_multipaths "on"
+        uxsock_timeout 4000
+        retrigger_tries 3
+        retrigger_delay 10
+        missing_uev_wait_timeout 30
+        skip_kpartx "no"
+        disable_changed_wwids "ignored"
+        remove_retries 0
+        ghost_delay "no"
+        auto_resize "never"
+        find_multipaths_timeout -10
+        enable_foreign "NONE"
+        marginal_pathgroups "off"
+        recheck_wwid "no"
+}
+```
+
 *Check File Descriptors:*  
 https://access.redhat.com/solutions/3450832  
 Multipath should have at least 2 FDs per path.
