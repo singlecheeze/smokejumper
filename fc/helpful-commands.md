@@ -66,6 +66,7 @@ ls -l /proc/$(cat /var/run/multipathd.pid)/fd | wc -l
 ```
 cat /proc/sys/fs/nr_open
 ```
+```
 1073741816
 ```
 
