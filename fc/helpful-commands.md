@@ -56,6 +56,16 @@ OLD: Host: scsi3 Channel: 00 Id: 00 Lun: 02
 0 device(s) removed. 
 ```  
 
+*Check File Descriptors:*  
+```
+ls -l /proc/$(cat /var/run/multipathd.pid)/fd | wc -l
+14
+```
+```
+cat /proc/sys/fs/nr_open
+1073741816
+```
+
 *Force Devmap Reload:*  
 https://git.kernel.org/pub/scm/linux/storage/multipath/hare/multipath-tools.git/commit/?id=a4d0b34e841aae7e0722ba532ca46ff78b0f106e  
 ```
