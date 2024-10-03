@@ -123,6 +123,122 @@ defaults {
 }
 ```
 
+*Show Multipath Topology JSON:*  
+```
+# multipathd -k
+multipathd> show maps json
+{
+   "major_version": 0,
+   "minor_version": 1,
+   "maps": [{
+      "name" : "mpatha",
+      "uuid" : "3620000007355abb3b8950167b5790928",
+      "sysfs" : "dm-0",
+      "failback" : "-",
+      "queueing" : "-",
+      "paths" : 4,
+      "write_prot" : "rw",
+      "dm_st" : "active",
+      "features" : "0",
+      "hwhandler" : "0",
+      "action" : "",
+      "path_faults" : 0,
+      "vend" : "OSNEXUS",
+      "prod" : "QUANTASTOR",
+      "rev" : "380",
+      "switch_grp" : 0,
+      "map_loads" : 1,
+      "total_q_time" : 0,
+      "q_timeouts" : 0,
+      "path_groups": [{
+         "selector" : "service-time 0",
+         "pri" : 1,
+         "dm_st" : "active",
+         "marginal_st" : "normal",
+         "group" : 1,
+         "paths": [{
+            "dev" : "sdf",
+            "dev_t" : "8:80",
+            "dm_st" : "active",
+            "dev_st" : "running",
+            "chk_st" : "ready",
+            "checker" : "tur",
+            "pri" : 1,
+            "host_wwnn" : "0x200000109bc3914e",
+            "target_wwnn" : "0x20000024ff1e85b7",
+            "host_wwpn" : "0x100000109bc3914e",
+            "target_wwpn" : "0x21000024ff1e85b7",
+            "host_adapter" : "0000:80:02.0",
+            "marginal_st" : "normal"
+         }]
+      },{
+         "selector" : "service-time 0",
+         "pri" : 1,
+         "dm_st" : "enabled",
+         "marginal_st" : "normal",
+         "group" : 2,
+         "paths": [{
+            "dev" : "sdg",
+            "dev_t" : "8:96",
+            "dm_st" : "active",
+            "dev_st" : "running",
+            "chk_st" : "ready",
+            "checker" : "tur",
+            "pri" : 1,
+            "host_wwnn" : "0x200000109bc3914e",
+            "target_wwnn" : "0x20000024ff1e85b6",
+            "host_wwpn" : "0x100000109bc3914e",
+            "target_wwpn" : "0x21000024ff1e85b6",
+            "host_adapter" : "0000:80:02.0",
+            "marginal_st" : "normal"
+         }]
+      },{
+         "selector" : "service-time 0",
+         "pri" : 1,
+         "dm_st" : "enabled",
+         "marginal_st" : "normal",
+         "group" : 3,
+         "paths": [{
+            "dev" : "sdh",
+            "dev_t" : "8:112",
+            "dm_st" : "active",
+            "dev_st" : "running",
+            "chk_st" : "ready",
+            "checker" : "tur",
+            "pri" : 1,
+            "host_wwnn" : "0x200000109bc3914f",
+            "target_wwnn" : "0x20000024ff1e85b7",
+            "host_wwpn" : "0x100000109bc3914f",
+            "target_wwpn" : "0x21000024ff1e85b7",
+            "host_adapter" : "0000:80:02.0",
+            "marginal_st" : "normal"
+         }]
+      },{
+         "selector" : "service-time 0",
+         "pri" : 1,
+         "dm_st" : "enabled",
+         "marginal_st" : "normal",
+         "group" : 4,
+         "paths": [{
+            "dev" : "sdi",
+            "dev_t" : "8:128",
+            "dm_st" : "active",
+            "dev_st" : "running",
+            "chk_st" : "ready",
+            "checker" : "tur",
+            "pri" : 1,
+            "host_wwnn" : "0x200000109bc3914f",
+            "target_wwnn" : "0x20000024ff1e85b6",
+            "host_wwpn" : "0x100000109bc3914f",
+            "target_wwpn" : "0x21000024ff1e85b6",
+            "host_adapter" : "0000:80:02.0",
+            "marginal_st" : "normal"
+         }]
+      }]
+   }]
+}
+```
+
 *Check File Descriptors:*  
 https://access.redhat.com/solutions/3450832  
 Multipath should have at least 2 FDs per path.
