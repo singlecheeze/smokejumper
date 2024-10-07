@@ -60,8 +60,10 @@ spec:
               data: |
                 ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="OSNEXUS", ATTR{queue/scheduler}="none"
                 ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*", ATTR{queue/scheduler}="none"
+                # https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/factors-affecting-i-o-and-file-system-performance_monitoring-and-managing-system-status-and-performance#generic-block-device-tuning-parameters_factors-affecting-i-o-and-file-system-performance
                 ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="OSNEXUS", ATTR{queue/add_random}="0"
                 ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*", ATTR{queue/add_random}="0"
+                # For storage configurations that need to maximize distribution of completion processing setting this option to '2' forces the completion to run on the requesting cpu (bypassing the "group" aggregation logic).
                 ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="OSNEXUS", ATTR{queue/rq_affinity}="2"
                 ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*", ATTR{queue/rq_affinity}="2"
 
