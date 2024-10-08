@@ -33,6 +33,10 @@ spec:
                     vendor "OSNEXUS"
                   }
                 }
+                blacklist {
+                  devnode ".*"
+                  devnode "!^(sd[a-z]|dasd[a-z]|nvme[0-9])"
+                }
                 blacklist_exceptions {
                   property "(ID_SCSI_VPD|ID_WWN|ID_SERIAL)"
                   device {
