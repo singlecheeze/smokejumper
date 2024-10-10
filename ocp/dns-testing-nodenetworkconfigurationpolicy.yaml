@@ -1,7 +1,7 @@
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
-  name: worker-0-dns-testing
+  name: dns-testing-nodenetworkconfigurationpolicy
 spec:
   desiredState:
     dns-resolver:
