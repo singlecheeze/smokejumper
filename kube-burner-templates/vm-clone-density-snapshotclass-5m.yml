@@ -20,7 +20,7 @@ jobs:
       inputVars:
         url: https://dl.fedoraproject.org/pub/fedora/linux/releases/40/Cloud/x86_64/images/Fedora-Cloud-Base-Generic.x86_64-40-1.14.qcow2
         storage: 10Gi
-        storageclass: rhibox-fc
+        storageclass: infinibox-storageclass-fc
         volumemode: Block
     - objectTemplate: templates/dv-volsnap.yml
       replicas: 1
@@ -44,7 +44,7 @@ jobs:
         cpuCores: 1
         memory: 1G
         storage: 10Gi
-        storageclass: rhibox-fc
+        storageclass: infinibox-storageclass-fc
         volumemode: Block
         VMIrunning: true
   - name: delete-job
