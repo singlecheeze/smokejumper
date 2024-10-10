@@ -42,9 +42,9 @@ storage:
       contents:
         inline: |
             # Emulex
-            options lpfc lpfc_hba_queue_depth=4096 lpfc_lun_queue_depth=128
+            options lpfc lpfc_hba_queue_depth=4096 lpfc_lun_queue_depth=128 lpfc_max_luns=65535
             # QLogic
-            options qla2xxx ql2xmaxqdepth=128
+            options qla2xxx ql2xmaxqdepth=128 ql2xmaxlun=65535
             # Cisco
             options fnic fnic_max_qdepth=128
     - path: /etc/udev/rules.d/99-osnexus-queue.rules
