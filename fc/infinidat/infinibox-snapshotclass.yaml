@@ -3,7 +3,7 @@ deletionPolicy: Delete
 driver: infinibox-csi-driver
 kind: VolumeSnapshotClass
 metadata:
-  name: ibox-snapshotclass
+  name: infinibox-snapshotclass
 parameters:
   csi.storage.k8s.io/snapshotter-secret-name: infinibox-creds
   csi.storage.k8s.io/snapshotter-secret-namespace: infinidat-csi
