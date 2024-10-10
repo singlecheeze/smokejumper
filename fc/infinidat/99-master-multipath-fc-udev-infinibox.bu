@@ -1,9 +1,9 @@
 variant: openshift
-version: 4.14.0
+version: 4.16.0
 metadata:
-  name: 99-worker-infinidat-multipath                
+  name: 99-master-multipath-fc-udev-infinibox
   labels:
-    machineconfiguration.openshift.io/role: worker
+    machineconfiguration.openshift.io/role: master
 openshift:
   kernel_arguments:
     - elevator=none
@@ -14,10 +14,9 @@ storage:
       overwrite: true
       contents:
         inline: |
-          options lpfc lpfc_hba_queue_depth=4096 lpfc_lun_queue_depth=128 
-          options qla2xxx ql2xmaxqdepth=128 
+          options lpfc lpfc_hba_queue_depth=4096 lpfc_lun_queue_depth=128 lpfc_max_luns=65535
+          options qla2xxx ql2xmaxqdepth=128 ql2xmaxlun=65535
           options fnic fnic_max_qdepth=128
-
     - path: /etc/udev/rules.d/99-infinidat-queue.rules
       mode: 0644
       overwrite: true
@@ -29,7 +28,6 @@ storage:
           ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*", ATTR{queue/add_random}="0"
           ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/rq_affinity}="2"
           ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*" , ATTR{queue/rq_affinity}="2"
-
     - path: /etc/multipath.conf
       mode: 0644
       overwrite: true
