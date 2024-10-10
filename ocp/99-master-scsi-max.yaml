@@ -1,0 +1,11 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: 99-master-scsi-max
+  labels:
+    machineconfiguration.openshift.io/role: master
+spec:
+  kernelArguments:
+    - scsi_mod.max_luns=65535
+    - lpfc.lpfc_max_luns=65535
+    - qla2xxx.ql2xmaxlun=65535

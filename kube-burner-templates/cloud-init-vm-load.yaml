@@ -58,7 +58,7 @@ spec:
           name: fedora
           namespace: openshift-virtualization-os-images
         storage:
-          storageClassName: ocs-storagecluster-ceph-rbd
+          storageClassName: infinibox-storageclass-fc
           resources:
             requests:
               storage: 5Gi
