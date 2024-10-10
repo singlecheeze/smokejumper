@@ -13,7 +13,7 @@ jobs:
     qps: {{.QPS}}
     burst: {{.BURST}}
     maxWaitTimeout: 1h
-    jobPause: 5m
+    jobPause: 1m
     objects:
     - objectTemplate: templates/dv-source.yml
       replicas: 1
@@ -22,10 +22,6 @@ jobs:
         storage: 10Gi
         storageclass: rhibox-fc
         volumemode: Block
-    - objectTemplate: templates/dv-volsnap.yml
-      replicas: 1
-      inputVars:
-        volsnapclass: ibox-snapshotclass
   - name: vm-density
     jobType: create
     jobIterations: {{.ITERATIONS}}
