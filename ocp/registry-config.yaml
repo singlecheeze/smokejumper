@@ -3,7 +3,7 @@ kind: Config
 metadata:
   finalizers:
     - imageregistry.operator.openshift.io/finalizer
-  name: cluster
+  name: registry-config
 spec:
   logLevel: Normal
   rolloutStrategy: RollingUpdate
