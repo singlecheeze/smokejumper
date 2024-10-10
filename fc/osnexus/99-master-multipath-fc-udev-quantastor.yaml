@@ -19,7 +19,7 @@ spec:
           path: /etc/multipath.conf
         - contents:
             compression: gzip
-            source: data:;base64,H4sIAAAAAAAC/1JWcM0tzUmt4MovKMnMzytWyClISwYT8RlJifGFpamlqfEpqQUlGbYmBpZmEJmc0jwUGUMjCy5lhUCf/PTMZLhBhTmJRhUVFQqFOUYVuYkVhchKnTOLk/PhKtPyMpPBRHxuYkU8kkJAAAAA//8oMjHdnQAAAA==
+            source: data:;base64,H4sIAAAAAAAC/1JWcM0tzUmt4MovKMnMzytWyClISwYT8RlJifGFpamlqfEpqQUlGbYmBpZmEJmc0jwUGUMjC4hEbmIFSLLY1szU1NiUS1kh0Cc/PTMZbnhhTqJRRUWFQmGOUUVuYkUhQjtUJKc0D67XObM4OR+uNS0vMxlMgC1B6OQCBAAA//+ADpF8wgAAAA==
           mode: 420
           overwrite: true
           path: /etc/modprobe.d/quantastor.conf
