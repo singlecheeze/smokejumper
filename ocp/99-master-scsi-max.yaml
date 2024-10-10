@@ -5,6 +5,9 @@ metadata:
   labels:
     machineconfiguration.openshift.io/role: master
 spec:
+  config:
+    ignition:
+      version: 3.4.0
   kernelArguments:
     - scsi_mod.max_luns=65535
     - lpfc.lpfc_max_luns=65535
