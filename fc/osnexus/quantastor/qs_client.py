@@ -47,11 +47,12 @@ class QuantastorClient(object):
         return cls(hostname=module.params['quantastor_hostname'],username=module.params['quantastor_username'],password=module.params['quantastor_password'],cert=module.params['quantastor_cert'])
 
 
-    def make_call(self, api, payload):
+    def make_call(self, api, payload, print_ssl_warn: bool = True):
         strURL = self._base_url + api
         certPath = self._cert
         if not path.exists(self._cert) or not self._cert:
-            print ("Warning - SSL certificate path: '" + str(self._cert) + "' either doesn't exist, or was not given. HTTPS request cannot be verified.")
+            if print_ssl_warn:
+                print ("Warning - SSL certificate path: '" + str(self._cert) + "' either doesn't exist, or was not given. HTTPS request cannot be verified.")
             certPath = False
         r = requests.get(strURL,  params=payload, verify=certPath, auth=self._auth, timeout=self._timeout)
         if r.status_code != 200:
@@ -10381,7 +10382,7 @@ class QuantastorClient(object):
             'storageVolumeList' : storageVolumeList,  #xsd:string
             'flags' : flags,  #xsd:unsignedInt
             }
-        jsonOutput = self.make_call('storageVolumeAclAddRemoveEx', payload)
+        jsonOutput = self.make_call('storageVolumeAclAddRemoveEx', payload, False)
         return StorageVolumeAclAddRemoveExResponse.responseParse(jsonOutput)
 
     def storage_volume_acl_enum(
@@ -10514,7 +10515,7 @@ class QuantastorClient(object):
             'disableMapping' : disableMapping,  #xsd:boolean
             'flags' : flags,  #xsd:unsignedInt
             }
-        jsonOutput = self.make_call('storageVolumeCreateEx', payload)
+        jsonOutput = self.make_call('storageVolumeCreateEx', payload, False)
         return StorageVolumeCreateExResponse.responseParse(jsonOutput)
 
     def storage_volume_create_passthru(
@@ -10571,7 +10572,7 @@ class QuantastorClient(object):
             'storageVolume' : storageVolume,  #xsd:string
             'flags' : flags,  #xsd:unsignedInt
             }
-        jsonOutput = self.make_call('storageVolumeDeleteEx', payload)
+        jsonOutput = self.make_call('storageVolumeDeleteEx', payload, False)
         return StorageVolumeDeleteExResponse.responseParse(jsonOutput)
 
     def storage_volume_enum(
