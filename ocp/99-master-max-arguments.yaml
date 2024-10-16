@@ -4,7 +4,7 @@ kind: MachineConfig
 metadata:
   labels:
     machineconfiguration.openshift.io/role: master
-  name: 99-master-multipath-fc-udev-infinibox
+  name: 99-master-max-arguments
 spec:
   config:
     ignition:
