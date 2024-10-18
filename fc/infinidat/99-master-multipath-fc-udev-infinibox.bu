@@ -46,7 +46,7 @@ storage:
               hardware_handler "1 alua"
               prio "alua"
               rr_weight "priorities"
-              no_path_retry "fail"
+              no_path_retry "queue"
               rr_min_io 1
               rr_min_io_rq 1
               flush_on_last_del "yes"
