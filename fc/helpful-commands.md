@@ -243,6 +243,41 @@ defaults {
 }
 ```
 
+Ref: https://access.redhat.com/solutions/26017
+*Check Kernel Args:*  
+```text
+sh-5.1# sysctl -a | grep 256
+fs.mqueue.queues_max = 256
+kernel.random.entropy_avail = 256
+kernel.random.poolsize = 256
+kernel.random.write_wakeup_threshold = 256
+net.core.mem_pcpu_rsv = 256
+net.ipv4.route.min_adv_mss = 256
+vm.lowmem_reserve_ratio = 256   256     32      0       0
+sh-5.1# rpm-ostree kargs
+ignition.platform.id=metal $ignition_firstboot ip=eno4:dhcp ostree=/ostree/boot.1/rhcos/223373688b70d785d5ee2d2ce27d8ba11ab5d33d173a6ac56429fc3f28806d3f/0 root=UUID=2bc46bd5-c06b-4ec3-9adb-61b53a3d0b5f rw rootflags=prjquota boot=UUID=c00830f3-b627-4e2a-ab88-938729f5eed5 systemd.unified_cgroup_hierarchy=1 cgroup_no_v1="all" psi=0 scsi_mod.max_luns=65535 lpfc.lpfc_max_luns=65535 qla2xxx.ql2xmaxlun=65535
+sh-5.1# cat /proc/cmdline
+BOOT_IMAGE=(hd4,gpt3)/boot/ostree/rhcos-223373688b70d785d5ee2d2ce27d8ba11ab5d33d173a6ac56429fc3f28806d3f/vmlinuz-5.14.0-427.35.1.el9_4.x86_64 ignition.platform.id=metal ip=eno4:dhcp ostree=/ostree/boot.1/rhcos/223373688b70d785d5ee2d2ce27d8ba11ab5d33d173a6ac56429fc3f28806d3f/0 root=UUID=2bc46bd5-c06b-4ec3-9adb-61b53a3d0b5f rw rootflags=prjquota boot=UUID=c00830f3-b627-4e2a-ab88-938729f5eed5 systemd.unified_cgroup_hierarchy=1 cgroup_no_v1=all psi=0 scsi_mod.max_luns=65535 lpfc.lpfc_max_luns=65535 qla2xxx.ql2xmaxlun=65535
+```
+
+*Check FC HBA Driver Options:*  
+```text
+sh-5.1# modinfo qla2xxx | grep parm | grep max
+parm:           ql2xmaxqdepth:Maximum queue depth to set for each LUN. Default is 64. (int)
+parm:           ql2xmaxlun:Defines the maximum LU number to register with the SCSI midlayer. Default is 65535. (ullong)
+
+sh-5.1# modinfo lpfc | grep parm | grep max
+parm:           lpfc_debugfs_max_disc_trc:Set debugfs discovery trace depth (int)
+parm:           lpfc_debugfs_max_slow_ring_trc:Set debugfs slow ring trace depth (int)
+parm:           lpfc_debugfs_max_nvmeio_trc:Set debugfs NVME IO trace depth (int)
+parm:           lpfc_tgt_queue_depth:Set max Target queue depth (uint)
+parm:           lpfc_fcp_imax:Set the maximum number of FCP interrupts per second per HBA (int)
+parm:           lpfc_cq_max_proc_limit:Set the maximum number CQEs processed in an iteration of CQ processing (int)
+parm:           lpfc_max_scsicmpl_time:Use command completion time to control queue depth (uint)
+parm:           lpfc_max_luns:Maximum allowed LUN ID (ullong)
+parm:           lpfc_max_vmid:Maximum number of VMs supported (uint)
+```
+
 *Check File Descriptors:*  
 https://access.redhat.com/solutions/3450832  
 Multipath should have at least 2 FDs per path.
