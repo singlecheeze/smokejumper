@@ -1,0 +1,10 @@
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: StorageProfile
+metadata:
+  name: infinibox-storageprofile-fc
+spec:
+  cloneStrategy: "csi-clone"  #or "snapshot"
+  claimPropertySets:
+  - accessModes:
+    - ReadWriteMany    #or ReadWriteOnce
+    volumeMode: Block  #or Filesystem

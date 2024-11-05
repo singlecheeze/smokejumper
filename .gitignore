@@ -1,2 +1,4 @@
 ./.idea
 **/__pycache__
+/fc/osnexus/oc.exe
+/fc/osnexus/kubeconfig
