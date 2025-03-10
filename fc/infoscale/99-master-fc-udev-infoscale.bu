@@ -7,6 +7,7 @@ metadata:
 storage:
   files:
     # https://www.veritas.com/support/en_US/doc/79630152-141543514-0/v91597518-141543514
+    # Though the above doesn't work for removing: LLT: Error loading LLT dependancy rdma_cm
     - path: /etc/modprobe.d/ipv6.conf
       mode: 0644
       overwrite: true
