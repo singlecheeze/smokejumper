@@ -27,7 +27,7 @@ storage:
       mode: 0644
       overwrite: true
       contents:
-         inline: |
+        inline: |
             ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="OSNEXUS", ATTR{queue/scheduler}="none"
             ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="OSNEXUS", ATTR{queue/add_random}="0"
             ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="OSNEXUS", ATTR{queue/rq_affinity}="2"
