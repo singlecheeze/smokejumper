@@ -6,7 +6,7 @@ metadata:
     machineconfiguration.openshift.io/role: master
 storage:
   files:
-  - path: /etc/modprobe.d/ipv6.conf
+    - path: /etc/modprobe.d/ipv6.conf
       mode: 0644
       overwrite: true
       contents:
