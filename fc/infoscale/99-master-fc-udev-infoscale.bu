@@ -6,6 +6,7 @@ metadata:
     machineconfiguration.openshift.io/role: master
 storage:
   files:
+    # https://www.veritas.com/support/en_US/doc/79630152-141543514-0/v91597518-141543514
     - path: /etc/modprobe.d/ipv6.conf
       mode: 0644
       overwrite: true
