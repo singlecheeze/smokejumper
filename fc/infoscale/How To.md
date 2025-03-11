@@ -24,7 +24,7 @@ https://www.veritas.com/support/en_US/doc/168721626-168743109-1
    1. Note: If you do not enter InfoScale ClusterID, a ClusterID is randomly generated and assigned. The ClusterID is suffixed to the disk group.
 15. Click InfoScale Cluster Information. Enter information about the nodes here. Enter Node name . Optionally, you can enter IP addresses of nodes in Node IPs and the device path of the disk that you want to exclude from the InfoScale disk group in Exclude-device list. You can also add fencing devices in Fencing device list. For each node, you must add two IP addresses.
   1. Note: OpenShift cluster must have at least two nodes as minimum two nodes are needed to form an InfoScale cluster.
-16.
+16. Click Create to create an InfoScale cluster. Cluster formation begins. Watch the status message. It changes to FencingConfigured. The status then changes to DgCreated and finally Running as under.
      
 
 
