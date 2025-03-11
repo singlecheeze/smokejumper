@@ -1,4 +1,4 @@
-# Abreviated How To Install Guide for OpenShift (InfoScale 8.0.4)  
+# Abreviated Install Guide for OpenShift (InfoScale 8.0.4)  
 https://www.veritas.com/support/en_US/doc/168721626-168743109-1  
   
 ### Rrequired Operators (Do in this order)
