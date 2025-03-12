@@ -1,7 +1,7 @@
 # Abreviated Install Guide for OpenShift (InfoScale 8.0.4)  
 https://www.veritas.com/support/en_US/doc/168721626-168743109-1  
   
-### Rrequired Operators (Do in this order)
+### Required Operators (Do in this order)
 1. Cert-manager v1.11 or later on OCP 4.12 or Cert-manager v1.7.1 on OCP 4.11 (Red Hat-certified) must be installed
 2. Node Feature Discovery
 3. InfoScale Licensing Operator
@@ -26,7 +26,50 @@ https://www.veritas.com/support/en_US/doc/168721626-168743109-1
   1. Note: OpenShift cluster must have at least two nodes as minimum two nodes are needed to form an InfoScale cluster.
 16. Click Create to create an InfoScale cluster. Cluster formation begins. Watch the status message. It changes to FencingConfigured. The status then changes to DgCreated and finally Running as under.
      
-
+### Monitoring
+Create/Edit cluster-monitoring-config in the openshift-monitoring namespace as under.
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-monitoring-config
+  namespace: openshift-monitoring
+data:
+  config.yaml: |
+    enableUserWorkload: true
+```
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: infoscale-metrics
+  namespace: infoscale-vtas
+  labels:
+    release: kube-prometheus
+spec:
+  selector:
+    matchLabels:
+      cvmmaster: "true"
+podMetricsEndpoints:
+- path: /infoscale/api/2.0/metrics
+  port: rest-endpoint
+  interval: 2m
+  scrapeTimeout: 30s
+  scheme: https
+  tlsConfig:
+    ca:
+      secret:
+        key: ca.crt
+        name: infoscale-prom-tls
+    cert:
+      secret:
+        key: tls.crt
+        name: infoscale-prom-tls
+    keySecret:
+      key: tls.key
+      name: infoscale-prom-tls
+    serverName: infoscale-sds-rest-59131  # <Cluster ID>
+```
 
 ### Appendix
 Helpful Commands from an SDS Pod (infoscale-sds-59131-1eb7816cdb4bd7f3-2grq4)
