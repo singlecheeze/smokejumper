@@ -50,25 +50,25 @@ spec:
   selector:
     matchLabels:
       cvmmaster: "true"
-podMetricsEndpoints:
-- path: /infoscale/api/2.0/metrics
-  port: rest-endpoint
-  interval: 2m
-  scrapeTimeout: 30s
-  scheme: https
-  tlsConfig:
-    ca:
-      secret:
-        key: ca.crt
+  podMetricsEndpoints:
+  - path: /infoscale/api/2.0/metrics
+    port: rest-endpoint
+    interval: 2m
+    scrapeTimeout: 30s
+    scheme: https
+    tlsConfig:
+      ca:
+        secret:
+          key: ca.crt
+          name: infoscale-prom-tls
+      cert:
+        secret:
+          key: tls.crt
+          name: infoscale-prom-tls
+      keySecret:
+        key: tls.key
         name: infoscale-prom-tls
-    cert:
-      secret:
-        key: tls.crt
-        name: infoscale-prom-tls
-    keySecret:
-      key: tls.key
-      name: infoscale-prom-tls
-    serverName: infoscale-sds-rest-59131  # <Cluster ID>
+      serverName: infoscale-sds-rest-59131  # <Cluster ID>
 ```
 
 ### Appendix
