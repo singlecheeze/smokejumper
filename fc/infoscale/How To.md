@@ -25,7 +25,32 @@ https://www.veritas.com/support/en_US/doc/168721626-168743109-1
 15. Click InfoScale Cluster Information. Enter information about the nodes here. Enter Node name . Optionally, you can enter IP addresses of nodes in Node IPs and the device path of the disk that you want to exclude from the InfoScale disk group in Exclude-device list. You can also add fencing devices in Fencing device list. For each node, you must add two IP addresses.
   1. Note: OpenShift cluster must have at least two nodes as minimum two nodes are needed to form an InfoScale cluster.
 16. Click Create to create an InfoScale cluster. Cluster formation begins. Watch the status message. It changes to FencingConfigured. The status then changes to DgCreated and finally Running as under.
-     
+
+### Storage Profile
+```yaml
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: StorageProfile
+metadata:
+  name: infoscale-storage-class
+spec:
+  claimPropertySets:
+    - accessModes:
+        - ReadWriteMany
+      volumeMode: Block
+    - accessModes:
+        - ReadWriteOnce
+      volumeMode: Block
+    - accessModes:
+        - ReadWriteOnce
+      volumeMode: Filesystem
+  cloneStrategy: csi-clone
+status:
+  cloneStrategy: csi-clone
+  dataImportCronSourceFormat: pvc
+  provisioner: org.veritas.infoscale
+  snapshotClass: csi-infoscale-snapclass
+  storageClass: infoscale-storage-class
+```
 ### Monitoring
 Create/Edit cluster-monitoring-config in the openshift-monitoring namespace as under.
 ```yaml
