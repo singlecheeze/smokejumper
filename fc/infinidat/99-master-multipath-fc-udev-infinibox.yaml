@@ -13,21 +13,21 @@ spec:
       files:
         - contents:
             compression: gzip
-            source: data:;base64,H4sIAAAAAAAC/8ovKMnMzytWyClISwYT8RlJifGFpamlqfEpqQUlGbYmBpZmEJmc0jwUGUMjC4hEbmIFSLLY1szU1NiUC2ZmYU6iUUVFhUJhjlFFbmJFIUIXVCSnNA9NS1peZjKYAJuJ0MEFCAAA///cEkiVqAAAAA==
+            source: data:;base64,H4sIAAAAAAAC/8ovKMnMzytWyClISwYT8RlJifGFpamlqfEpqQUlGbYmBpZmEJmc0jwUGUMjC4hEbmIFSLLY1szU1NiUC2ZmYU6iUUVFhUJhjlFFbmJFIUIXVCSnNA9NS1peZjKYAJuJ0IEwMzUlTQHdEVD7oWYBAgAA///rXBQA0wAAAA==
           mode: 420
           overwrite: true
           path: /etc/modprobe.d/infinidat.conf
         - contents:
             compression: gzip
-            source: data:;base64,H4sIAAAAAAAC/7zPQUoDMRQA0L2nCH9ZUixVdPUX0UQItikksSAiIZ2fscU2Q6fOQmvuLl5gRBx7gscTt14vDCJEos9qHfNLAs7ulTVqhggHeorjj+cRcOYebtyj82qOCKttU70CZ8osj1qGpTJyYQsimDtttBQeOBPe2+O+S106P1TrRN02tQUhNznB2Q8s7cZ9pJwHp6wWs2/y4ur6crqa1KM/msNUI1FoY6ZmVxAmp4j+Uhym2e5DrOtN3ry9F4TpPz1Zv/kVAAD//3b/J7O8AgAA
+            source: data:;base64,H4sIAAAAAAAC/7yVz2obMRCH73kKoRwCwZs1qUnTgg5uvQXTZAO2GyiliLE0awmvJFuaLUlTv3uxjWlw/+RUXRZWM8P3+2CQTpkhWqW3ZamDShcRtQG6UMGV6LdHnUNPQDb4MqKWBkiiJ4yraBPK1vruobwuDbm2dMFbCtH6hQSvpQMPi+1PekyETiYC6tKutMLYhOjAKywbUBRiKqBpUJH1i8IWoQCvi8a2WOyHi2cT8hdn13bgHFr3nF3p2dTJ8P1sfFcLwUHrH8qAXyDvsY/VpK5uhOBJf5kX37+e8x6bfno3/TydVbdC8Hkb1JL3WFXfP41H8r6qR3eTjRC8/jCux6PhjPfYcDabPGn8ZhWW6w47lBpXZDaCX/YH15ydsrM2JZUsK9ozBg1hZBSYMqiWjIxN/zvbLlTpo4y47jBROkR7Caxd8S/o6FZOq8l4eLOFvrp6Pbic95vzl6l5fB08yIS75ZLL+UbwQf/NVQ7lv4DzWEcELcFsv3t2DuM/QPPYJmVQdy3GjeA+eMwh+zszjytoLSN4HdxG8H4O02Nipg0O+/cG2lyex8RMnmsJTWO9pcftzZhF9AjJTn4GAAD//3/W4eP/BwAA
           mode: 420
           overwrite: true
           path: /etc/udev/rules.d/99-infinidat-queue.rules
         - contents:
             compression: gzip
-            source: data:;base64,H4sIAAAAAAAC/1SQsY7jMAxEe38Fof6ApLgPuMPhgDSpticYiY6JyJJDUckai/z7wrKzm+3IN2OLM4F7qtEKfHQAvaSAY40mE9lQwM1cXPfoAt/E8+pZ5zYC3DiFrOCO/w/Hw78/b67RSXOo3sAdUi9J/ub3jZMNeNZcJ0lnnHIUP4NrAE8zTir5xegH9hdWcFZ1xT2TVeUCu7YOpOFOyjhQCnFx7oFipecRksF976p4ZzkPBm6RVEyWcIuUMrYXlU1ncNfKlb8+GiWhZNj/3FGvG+pjLQPmhJGKYeC4tda0BUnGniSijRn2vxsPfMOYS2nMSWvJ5pfshSN7W5otrEvfv0xGht3ztxJP5C/gZBw5CNl2bmBjb7hGT1uZtbBir8IpxBkTjVye4qN7fAYAAP//Q2C4BQACAAA=
+            source: data:;base64,H4sIAAAAAAAC/1SQsY7jMAxEe38Fof6ApLgPuMPhgDSpticYiY6JyJJDUckai/z7wrKzm+3IN2OLM4F7qtEKfHQAvaSAY40mE9lQwM1cXPfoAt/E8+pZ5zYC3DiFrOCO/w/Hw78/b67RSXOo3sAdUi9J/ub3jZMNeNZcJ0lnnHIUP4NrAE8zTir5xegH9hdWcFZ1xT2TVeUCu7YOpOFOyjhQCnFx7oFipecRksF976p4ZzkPBm6RVEyWcIuUMrYXlU1ncNfKlb8+GiWhZNj/3FGvG+pjLQPmhJGKYeC4tda0BUnGniSijRn2vxsPfMOYS2nMSWvJ5pfshSN7W5otrEvfv0xGht3ztxJP5C/gZBw5CNl2bmBjb7hGT1uZtbBir8IpxBkTjVye4qN7dJ8BAAD//9muB90BAgAA
           mode: 420
           overwrite: true
           path: /etc/multipath.conf
   kernelArguments:
-    - elevator=none
+    - elevator=none 
