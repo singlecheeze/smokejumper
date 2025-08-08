@@ -31,8 +31,8 @@ storage:
           ACTION=="add|change", KERNEL=="sd[b-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/max_sectors_kb}="4096"
           ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*", ATTR{queue/max_sectors_kb}="4096"
           
-          ACTION=="add|change", KERNEL=="sd[b-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/read_ahead_kb}="4"
-          ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*", ATTR{queue/read_ahead_kb}="4"
+          ACTION=="add|change", KERNEL=="sd[b-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/read_ahead_kb}="4096"
+          ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*", ATTR{queue/read_ahead_kb}="4096"
           
           ACTION=="add|change", KERNEL=="sd[b-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/scheduler}="none"
           ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*", ATTR{queue/scheduler}="none"
