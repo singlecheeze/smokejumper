@@ -24,26 +24,27 @@ storage:
       contents:
         inline: |
           # https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/factors-affecting-i-o-and-file-system-performance_monitoring-and-managing-system-status-and-performance
-          ACTION=="add|change", KERNEL=="sd[b-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{device/queue_depth}="2048" # 'lsscsi -l' after to check this
-          ACTION=="add|change", KERNEL=="sd[b-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/nr_requests}="2048"
+          
+          ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{device/queue_depth}="2048" # 'lsscsi -l' after to check this
+          ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/nr_requests}="2048"
           ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*", ATTR{queue/nr_requests}="2048"
           
-          ACTION=="add|change", KERNEL=="sd[b-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/max_sectors_kb}="4096"
+          ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/max_sectors_kb}="4096"
           ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*", ATTR{queue/max_sectors_kb}="4096"
           
-          ACTION=="add|change", KERNEL=="sd[b-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/read_ahead_kb}="4096"
+          ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/read_ahead_kb}="4096"
           ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*", ATTR{queue/read_ahead_kb}="4096"
           
-          ACTION=="add|change", KERNEL=="sd[b-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/scheduler}="none"
+          ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/scheduler}="none"
           ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*", ATTR{queue/scheduler}="none"
           
-          ACTION=="add|change", KERNEL=="sd[b-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/add_random}="0"
+          ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/add_random}="0"
           ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*", ATTR{queue/add_random}="0"
           
-          ACTION=="add|change", KERNEL=="sd[b-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/rotational}="0"
+          ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/rotational}="0"
           ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*", ATTR{queue/rotational}="0"
           
-          ACTION=="add|change", KERNEL=="sd[b-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/rq_affinity}="2"
+          ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="NFINIDAT", ATTR{queue/rq_affinity}="2"
           ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_SERIAL}=="36742b0f*", ATTR{queue/rq_affinity}="2" 
     - path: /etc/multipath.conf
       mode: 0644
