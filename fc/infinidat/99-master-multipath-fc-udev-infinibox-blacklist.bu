@@ -17,6 +17,7 @@ storage:
           options lpfc lpfc_hba_queue_depth=4096 lpfc_lun_queue_depth=128 lpfc_max_luns=65535
           options qla2xxx ql2xmaxqdepth=128 ql2xmaxlun=65535
           options fnic fnic_max_qdepth=128
+          options qedf queue_depth=128 max_lun=65535
     - path: /etc/udev/rules.d/99-infinidat-queue.rules
       mode: 0644
       overwrite: true
