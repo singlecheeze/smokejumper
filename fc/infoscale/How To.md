@@ -26,6 +26,16 @@ https://www.veritas.com/support/en_US/doc/168721626-168743109-1
   1. Note: OpenShift cluster must have at least two nodes as minimum two nodes are needed to form an InfoScale cluster.
 16. Click Create to create an InfoScale cluster. Cluster formation begins. Watch the status message. It changes to FencingConfigured. The status then changes to DgCreated and finally Running as under.
 
+###License
+```yaml
+apiVersion: vlic.veritas.com/v1
+kind: License
+metadata:
+  name: license-dev
+spec:
+  licenseEdition: "Developer"
+```
+
 ### Cluster
 ```yaml
 kind: InfoScaleCluster
