@@ -44,18 +44,8 @@ spec:
 apiVersion: infoscale.veritas.com/v1
 kind: InfoScaleCluster
 metadata:
-  annotations:
-    infoscale.veritas.com/EO-Compliance: disabled
-    infoscale.veritas.com/Log-File-Permission: '600'
-    infoscale.veritas.com/combine-upgrade: disabled
-    infoscale.veritas.com/namespace: infoscale-vtas
-    infoscale.veritas.com/peerinact: 16s
-    infoscale.veritas.com/platform: 'openshift-container-platform/rhel:9.6:2025289:5.14.0-570.73.1.el9_6.x86_64'
-    infoscale.veritas.com/pv-rebuild: enabled
   name: infoscalecluster-dev
   namespace: infoscale-vtas
-  finalizers:
-    - veritas.com/infoscale.cluster
 spec:
   encrypted: false
   clusterInfo:
@@ -77,7 +67,6 @@ spec:
   sameEncKey: false
   enableScsi3pr: false
   isSharedStorage: true
-  clusterID: 420
   version: 9.1.0
 ```
 ### Storage Profile
