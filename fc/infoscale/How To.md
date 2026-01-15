@@ -51,6 +51,23 @@ status:
   snapshotClass: csi-infoscale-snapclass
   storageClass: infoscale-storage-class
 ```
+### Storage Class
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: csi-infoscale-sc
+annotations:
+  storageclass.kubernetes.io/is-default-class: "true"
+provisioner: org.veritas.infoscale
+reclaimPolicy: Delete
+allowVolumeExpansion: true
+parameters: fstype: vxfs
+  layout: "stripe"
+  nstripe: "1"
+  stripeUnit: "64k"
+  initType: "active"
+```
 ### Monitoring
 Create/Edit cluster-monitoring-config in the openshift-monitoring namespace as under.
 ```yaml
