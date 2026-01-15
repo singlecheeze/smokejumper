@@ -26,6 +26,46 @@ https://www.veritas.com/support/en_US/doc/168721626-168743109-1
   1. Note: OpenShift cluster must have at least two nodes as minimum two nodes are needed to form an InfoScale cluster.
 16. Click Create to create an InfoScale cluster. Cluster formation begins. Watch the status message. It changes to FencingConfigured. The status then changes to DgCreated and finally Running as under.
 
+### Cluster
+```yaml
+kind: InfoScaleCluster
+metadata:
+  annotations:
+    infoscale.veritas.com/EO-Compliance: disabled
+    infoscale.veritas.com/Log-File-Permission: '600'
+    infoscale.veritas.com/combine-upgrade: disabled
+    infoscale.veritas.com/namespace: openshift-nfd
+    infoscale.veritas.com/peerinact: 16s
+    infoscale.veritas.com/platform: 'openshift-container-platform/rhel:9.6:2025289:5.14.0-570.73.1.el9_6.x86_64'
+    infoscale.veritas.com/pv-rebuild: enabled
+  name: infoscalecluster-dev
+  namespace: infoscale-vtas
+  finalizers:
+    - veritas.com/infoscale.cluster
+spec:
+  encrypted: false
+  clusterInfo:
+    - includeDevices:
+        - '/dev/disk/by-path/pci-0000:82:00.0-fc-0x21000024ff1e85b6-lun-6'
+      ip:
+        - 172.16.1.113
+      nodeName: r730ocp3.localdomain
+    - includeDevices:
+        - '/dev/disk/by-path/pci-0000:82:00.0-fc-0x21000024ff1e85b6-lun-6'
+      ip:
+        - 172.16.1.114
+      nodeName: r730ocp4.localdomain
+    - includeDevices:
+        - '/dev/disk/by-path/pci-0000:82:00.0-fc-0x21000024ff1e85b6-lun-6'
+      ip:
+        - 172.16.1.115
+      nodeName: r730ocp5.localdomain
+  sameEncKey: false
+  enableScsi3pr: false
+  isSharedStorage: true
+  clusterID: 420
+  version: 9.1.0
+```
 ### Storage Profile
 ```yaml
 apiVersion: cdi.kubevirt.io/v1beta1
