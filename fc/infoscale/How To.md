@@ -16,15 +16,18 @@ https://www.veritas.com/support/en_US/doc/168721626-168743109-1
 8. After a successful creation of Node Feature Discovery, click Workloads > Pods in the left frame. Review names of the listed pods. Node Feature Discovery must be created on all nodes and is indicated by a prefix nfd.
 9. You can now apply the license. Click Operators > Installed Operators in the left frame.
 10. In the screen that opens, click Create License in the upper-right corner of your screen.
-11.  In License Edition, select the type of license.
+11. In License Edition, select the type of license.
    1. Note: If you want to install and configure Disaster Recovery (DR), you must have Enterprise type of license.
 12. Click Create to apply the license.
 13. Click Create InfoScaleCluster in the upper-right corner of your screen. The following screen opens.
 14. Choose a project to create InfoScale cluster. Enter Name, Namespace, and InfoScale ClusterID for the cluster. If you are installing in an airgapped environment, enter Image Registry for pulling images. To install on a system with Internet connectivity, do not enter any value for Image Registry.
    1. Note: If you do not enter InfoScale ClusterID, a ClusterID is randomly generated and assigned. The ClusterID is suffixed to the disk group.
-15. Click InfoScale Cluster Information. Enter information about the nodes here. Enter Node name . Optionally, you can enter IP addresses of nodes in Node IPs and the device path of the disk that you want to exclude from the InfoScale disk group in Exclude-device list. You can also add fencing devices in Fencing device list. For each node, you must add two IP addresses.
+15. Click InfoScale Cluster Information. Enter information about the nodes here. Enter Node name. Optionally, you can enter IP addresses of nodes in Node IPs and the device path of the disk that you want to exclude from the InfoScale disk group in Exclude-device list. You can also add fencing devices in Fencing device list. For each node, you must add two IP addresses.
   1. Note: OpenShift cluster must have at least two nodes as minimum two nodes are needed to form an InfoScale cluster.
-16. Click Create to create an InfoScale cluster. Cluster formation begins. Watch the status message. It changes to FencingConfigured. The status then changes to DgCreated and finally Running as under.
+16. Click Create to create an InfoScale cluster. Cluster formation begins. Watch the status message.
+  1. It changes to "FencingConfigured"
+  2. Then changes to "DgCreated"
+  3. Finally "Running"
 
 ###License
 ```yaml
@@ -38,13 +41,14 @@ spec:
 
 ### Cluster
 ```yaml
+apiVersion: infoscale.veritas.com/v1
 kind: InfoScaleCluster
 metadata:
   annotations:
     infoscale.veritas.com/EO-Compliance: disabled
     infoscale.veritas.com/Log-File-Permission: '600'
     infoscale.veritas.com/combine-upgrade: disabled
-    infoscale.veritas.com/namespace: openshift-nfd
+    infoscale.veritas.com/namespace: infoscale-vtas
     infoscale.veritas.com/peerinact: 16s
     infoscale.veritas.com/platform: 'openshift-container-platform/rhel:9.6:2025289:5.14.0-570.73.1.el9_6.x86_64'
     infoscale.veritas.com/pv-rebuild: enabled
