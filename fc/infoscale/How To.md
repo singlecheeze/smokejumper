@@ -97,20 +97,19 @@ status:
 ```
 ### Storage Class
 ```yaml
-apiVersion: storage.k8s.io/v1
 kind: StorageClass
+apiVersion: storage.k8s.io/v1
 metadata:
   name: csi-infoscale-sc
-annotations:
-  storageclass.kubernetes.io/is-default-class: "true"
+  annotations:
+    storageclass.kubernetes.io/is-default-class: 'true'
 provisioner: org.veritas.infoscale
+parameters:
+  fstype: vxfs
+  initType: active
+  layout: concat
 reclaimPolicy: Delete
 allowVolumeExpansion: true
-parameters: fstype: vxfs
-  layout: "stripe"
-  nstripe: "1"
-  stripeUnit: "64k"
-  initType: "active"
 ```
 ### Monitoring
 Create/Edit cluster-monitoring-config in the openshift-monitoring namespace as under.
