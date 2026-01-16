@@ -74,7 +74,7 @@ spec:
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: StorageProfile
 metadata:
-  name: infoscale-storage-class
+  name: infoscale-storage-profile
 spec:
   claimPropertySets:
     - accessModes:
@@ -91,8 +91,8 @@ status:
   cloneStrategy: csi-clone
   dataImportCronSourceFormat: pvc
   provisioner: org.veritas.infoscale
-  snapshotClass: csi-infoscale-snapclass
-  storageClass: infoscale-storage-class
+  snapshotClass: csi-infoscale-sc-snapclass
+  storageClass: csi-infoscale-sc
 ```
 ### Storage Class
 ```yaml
