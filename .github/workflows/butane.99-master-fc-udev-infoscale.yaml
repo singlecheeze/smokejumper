@@ -8,7 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: List files in the workspace
+        run: |
+          ls -R ${{ github.workspace }} # Lists all files and directories in the workspace
 
       - name: Generate MachineConfig
         run: |
