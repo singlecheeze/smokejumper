@@ -28,7 +28,7 @@ https://www.veritas.com/support/en_US/doc/168721626-168743109-1
   1. It changes to "FencingConfigured"
   2. Then changes to "DgCreated"
   3. Finally "Running"
-
+  
 ###License
 ```yaml
 apiVersion: vlic.veritas.com/v1
