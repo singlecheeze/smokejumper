@@ -1,0 +1,15 @@
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-and-apply-config:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Generate MachineConfig
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/workdir quay.io/coreos/butane:latest butane /workdir/99-master-fc-udev-infoscale.bu -o /workdir/99-master-fc-udev-infoscale.yaml
