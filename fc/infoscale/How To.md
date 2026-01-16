@@ -70,7 +70,7 @@ spec:
   version: 9.1.0
 ```
 ### Storage Profile
-Note: You may need to go edit the storage profile that geta automatically created when you create a storage class and add claimPropertySets to spec
+Note: You may need to go edit the storage profile that geta automatically created when you create a storage class and add the proper claimPropertySets to the spec
 ```yaml
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: StorageProfile
