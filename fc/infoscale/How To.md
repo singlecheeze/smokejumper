@@ -74,7 +74,7 @@ spec:
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: StorageProfile
 metadata:
-  name: infoscale-storage-profile
+  name: csi-infoscale-sc
 spec:
   claimPropertySets:
     - accessModes:
