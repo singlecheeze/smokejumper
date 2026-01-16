@@ -1,4 +1,4 @@
-# Abreviated Install Guide for OpenShift (InfoScale 8.0.4)  
+# Abreviated Install Guide for OpenShift (InfoScale 9.0.1)  
 https://www.veritas.com/support/en_US/doc/168721626-168743109-1  
   
 ### Required Operators (Do in this order)
@@ -70,7 +70,7 @@ spec:
   version: 9.1.0
 ```
 ### Storage Profile
-Note: You may need to go edit the storage profile that geta automatically created when you create a storage class
+Note: You may need to go edit the storage profile that geta automatically created when you create a storage class and add claimPropertySets to spec
 ```yaml
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: StorageProfile
