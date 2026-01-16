@@ -10,13 +10,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         
-      - name: List files in the workspace
-        run: |
-          chmod +x ${{ github.workspace }}/fc/infoscale/99-master-fc-udev-infoscale.bu
-          ls -la ${{ github.workspace }}/fc/infoscale
+      # - name: List files in the workspace
+      #   run: |
+      #     chmod +x ${{ github.workspace }}/fc/infoscale/99-master-fc-udev-infoscale.bu
+      #     ls -la ${{ github.workspace }}/fc/infoscale
         
       - name: Generate MachineConfig
         run: |
-          docker run --rm -v ${{ github.workspace }}:/workdir quay.io/coreos/butane:latest chmod +x /workdir/fc/infoscale/99-master-fc-udev-infoscale.bu && ls -la /workdir/fc/infoscale && butane --files-dir /workdir/fc/infoscale 99-master-fc-udev-infoscale.bu -o 99-master-fc-udev-infoscale.yaml
+          docker run --rm -v ${{ github.workspace }}:/workdir quay.io/coreos/butane:latest /workdir/fc/infoscale/99-master-fc-udev-infoscale.bu -o /workdir/fc/infoscale/99-master-fc-udev-infoscale.yaml
           
 
