@@ -29,7 +29,7 @@ https://www.veritas.com/support/en_US/doc/168721626-168743109-1
   2. Then changes to "DgCreated"
   3. Finally "Running"
   
-###License
+### License
 ```yaml
 apiVersion: vlic.veritas.com/v1
 kind: License
@@ -70,6 +70,7 @@ spec:
   version: 9.1.0
 ```
 ### Storage Profile
+Note: You may need to go edit the storage profile that geta automatically created when you create a storage class
 ```yaml
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: StorageProfile
