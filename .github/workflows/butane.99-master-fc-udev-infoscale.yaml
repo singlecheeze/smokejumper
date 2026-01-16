@@ -10,10 +10,20 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: List files in the workspace
+      - name: Install Butane CLI
         run: |
-          ls -R ${{ github.workspace }} # Lists all files and directories in the workspace
+          pip install coreos-butane
+          # Verify installation
+          butane --version
 
       - name: Generate MachineConfig
         run: |
-          docker run --rm -v ${{ github.workspace }}:/workdir quay.io/coreos/butane:latest butane -d /workdir/fc/infoscale/99-master-fc-udev-infoscale.bu -o /workdir/fc/infoscale/99-master-fc-udev-infoscale.yaml
+          butane 99-master-fc-udev-infoscale.bu -o 99-master-fc-udev-infoscale.yaml
+          # Display the generated file content (optional)
+          cat 99-master-fc-udev-infoscale.yaml
+          
+      - name: Upload MachineConfig Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: 99-master-fc-udev-infoscale-yaml
+          path: ./fc/infoscale/99-master-fc-udev-infoscale.yaml
