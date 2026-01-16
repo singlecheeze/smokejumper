@@ -12,4 +12,4 @@ jobs:
 
       - name: Generate MachineConfig
         run: |
-          docker run --rm -v ${{ github.workspace }}:/workdir quay.io/coreos/butane:latest butane ./fc/infoscale/99-master-fc-udev-infoscale.bu -o ./fc/infoscale/99-master-fc-udev-infoscale.yaml
+          docker run --rm -v ${{ github.workspace }}:/workdir quay.io/coreos/butane:latest butane /workdir/fc/infoscale/99-master-fc-udev-infoscale.bu -o /workdir/fc/infoscale/99-master-fc-udev-infoscale.yaml
