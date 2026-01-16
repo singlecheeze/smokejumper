@@ -12,6 +12,7 @@ jobs:
         
       - name: List files in the workspace
         run: |
+          chmod +x ${{ github.workspace }}/fc/infoscale/99-master-fc-udev-infoscale.bu
           ls -la ${{ github.workspace }}/fc/infoscale
         
       - name: Generate MachineConfig
