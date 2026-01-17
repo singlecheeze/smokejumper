@@ -50,19 +50,13 @@ spec:
   encrypted: false
   clusterInfo:
     - includeDevices:
-        - '/dev/disk/by-path/pci-0000:82:00.0-fc-0x21000024ff1e85b6-lun-6'
-      ip:
-        - 172.16.1.113
+        - '/dev/disk/by-path/pci-0000:82:00.0-fc-0x21000024ff1e85b7-lun-2'
       nodeName: r730ocp3.localdomain
     - includeDevices:
-        - '/dev/disk/by-path/pci-0000:82:00.0-fc-0x21000024ff1e85b6-lun-6'
-      ip:
-        - 172.16.1.114
+        - '/dev/disk/by-path/pci-0000:82:00.0-fc-0x21000024ff1e85b7-lun-2'
       nodeName: r730ocp4.localdomain
     - includeDevices:
-        - '/dev/disk/by-path/pci-0000:82:00.0-fc-0x21000024ff1e85b6-lun-6'
-      ip:
-        - 172.16.1.115
+        - '/dev/disk/by-path/pci-0000:82:00.0-fc-0x21000024ff1e85b7-lun-2'
       nodeName: r730ocp5.localdomain
   sameEncKey: false
   enableScsi3pr: false
