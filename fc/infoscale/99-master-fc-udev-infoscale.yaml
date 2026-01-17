@@ -29,3 +29,9 @@ spec:
           mode: 420
           overwrite: true
           path: /etc/udev/rules.d/99-infoscale-queue.rules
+        - contents:
+            compression: gzip
+            source: data:;base64,H4sIAAAAAAAC/2yRTWvcMBCG7/4Vg3IubJM2aY9bmkKgbGi8aXKqGEtje1h9GH3YLMX/vcTZxrW3703omXkfJE01ZpMi/C4AAHKkIOvA5LQ5SoeWIvyNOFIUE1Wz09Jmk7jD1M7EksqsJaYUuMqJYBlx91WWtw932+8CLmDfcoRA1vcUoaH0MqnQGJ8TaOoCKUzsHQwYHLumGIvKoDoYjunkral3Xq9bTl2/XG/p1ekCvrxNojHw8/lbCU9PuzjdDgNrEFfXl5spNx/pBjVSVV/RNdKnDV7ipv7wWRRjoalnRXGuZ0Wnw0t6ctqH/7jcl7vb58dSvJFd8DqrdE7+eNzu9ttyf//wD4yplU3wuWPXyM4bVscJnj6jynFGa2RToTqc7WVrSTMmWq2NZEilhbQIPjv9LviKHWxmPgQ5EDft2lpkx7UPdkFadpL9iny/7FYtqQMt3kukHF73jMVY/AkAAP//XM9dtKcCAAA=
+          mode: 420
+          overwrite: true
+          path: /etc/multipath.conf
