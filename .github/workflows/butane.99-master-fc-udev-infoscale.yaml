@@ -1,22 +1,71 @@
-on: 
-  push:
-    branches:
-      - main
+# on: 
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  generate-and-apply-config:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+# jobs:
+#   generate-and-apply-config:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v4
         
-      # - name: List files in the workspace
-      #   run: |
-      #     chmod +x ${{ github.workspace }}/fc/infoscale/99-master-fc-udev-infoscale.bu
-      #     ls -la ${{ github.workspace }}/fc/infoscale
+#       # - name: List files in the workspace
+#       #   run: |
+#       #     chmod +x ${{ github.workspace }}/fc/infoscale/99-master-fc-udev-infoscale.bu
+#       #     ls -la ${{ github.workspace }}/fc/infoscale
         
-      - name: Generate MachineConfig
-        run: |
-          docker run --rm -v ${{ github.workspace }}:/workdir quay.io/coreos/butane:latest butane --pretty --strict /workdir/fc/infoscale/99-master-fc-udev-infoscale.bu -o /workdir/fc/infoscale/99-master-fc-udev-infoscale.yaml
+#       - name: Generate MachineConfig
+#         run: |
+#           docker run --rm -v ${{ github.workspace }}:/workdir quay.io/coreos/butane:latest butane --pretty --strict /workdir/fc/infoscale/99-master-fc-udev-infoscale.bu -o /workdir/fc/infoscale/99-master-fc-udev-infoscale.yaml
           
 
+name: Butane -> MachineConfig
+
+on:
+  pull_request:
+    paths:
+      - "fc/infoscale/*.bu"
+      - ".github/workflows/butane.99-master-fc-udev-infoscale.yaml"
+  push:
+    branches: [ main ]
+    paths:
+      - "fc/infoscale/*.bu"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # only needed if you commit back to repo
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile Butane to MachineConfig YAML
+        run: |
+          set -euo pipefail
+          # mkdir -p machineconfigs/rendered
+          for f in fc/infoscale/*.bu; do
+            [ -e "$f" ] || continue
+            out="fc/infoscale/$(basename "${f%.bu}.yaml")"
+            echo "Rendering $f -> $out"
+            podman run --rm -i quay.io/coreos/butane:release < "$f" > "$out"
+          done
+
+      # Option A: upload rendered YAML as an artifact (no repo write)
+      # - name: Upload rendered MachineConfigs
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: rendered-machineconfigs
+      #     path: machineconfigs/rendered/*.yaml
+
+      # Option B: commit rendered YAML back to the repo (requires contents: write)
+      - name: Commit rendered outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add fc/infoscale
+          git commit -m "Render MachineConfigs from Butane" || exit 0
+          git push
