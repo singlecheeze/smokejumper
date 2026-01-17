@@ -33,3 +33,30 @@ storage:
             ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="OSNEXUS", ATTR{queue/scheduler}="none"
             ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="OSNEXUS", ATTR{queue/add_random}="0"
             ACTION=="add|change", KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ENV{ID_VENDOR}=="OSNEXUS", ATTR{queue/rq_affinity}="2"
+    - path: /etc/multipath.conf
+      mode: 0644
+      overwrite: true
+      contents:
+        inline: |
+            defaults {
+                user_friendly_names         "yes"
+                find_multipaths             "yes"
+                uid_attribute               "ID_SERIAL" # This removes getuid_callout deprecation warning
+            }
+            blacklist {
+                devnode                     "^nvme"
+                # Blacklist all VXFS WWNs
+                wwid "36200000075e7adaebf3e6ae80a2a0f49"
+            }
+            devices {
+                device {
+                    vendor                  "OSNEXUS"
+                    product                 "QUANTASTOR"
+                    path_grouping_policy    "multibus"
+                    failback                "immediate"
+                    path_selector           "round-robin 0"
+                    rr_weight               "uniform"
+                    rr_min_io               1
+                    path_checker            "tur"
+                }
+            }
