@@ -1,25 +1,3 @@
-# on: 
-#   push:
-#     branches:
-#       - main
-
-# jobs:
-#   generate-and-apply-config:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout Code
-#         uses: actions/checkout@v4
-        
-#       # - name: List files in the workspace
-#       #   run: |
-#       #     chmod +x ${{ github.workspace }}/fc/infoscale/99-master-fc-udev-infoscale.bu
-#       #     ls -la ${{ github.workspace }}/fc/infoscale
-        
-#       - name: Generate MachineConfig
-#         run: |
-#           docker run --rm -v ${{ github.workspace }}:/workdir quay.io/coreos/butane:latest butane --pretty --strict /workdir/fc/infoscale/99-master-fc-udev-infoscale.bu -o /workdir/fc/infoscale/99-master-fc-udev-infoscale.yaml
-          
-
 name: Butane -> MachineConfig
 
 on:
