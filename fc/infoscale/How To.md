@@ -194,6 +194,18 @@ sdf             state=enabled
 connectivity: r730ocp5.localdomain r730ocp4.localdomain r730ocp3.localdomain
 
 
+sh-5.1# cat /etc/llttab
+set-node r730ocp5.localdomain
+set-cluster 23411
+link link0 udp - udp 50000 - 172.16.1.115 -
+set-addr 0 link0 172.16.1.113
+set-addr 1 link0 172.16.1.114
+set-bcasthb 0
+set-arp 0
+set-discpeer 1
+set-timer peerinact:1600
+
+
 sh-5.1# vxprint -v
 Disk group: vrts_kube_dg-59131
 TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
