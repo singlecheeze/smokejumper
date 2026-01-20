@@ -60,3 +60,11 @@ storage:
                     path_checker            "tur"
                 }
             }
+            blacklist_exceptions {
+                property "(ID_SCSI_VPD|ID_WWN|ID_SERIAL)"
+                device {
+                    vendor "OSNEXUS"
+                    product "QUANTASTOR"
+            
+                }
+            }
