@@ -49,16 +49,19 @@ storage:
                 wwid "36200000075e7adaebf3e6ae80a2a0f49"
             }
             devices {
-                device {
-                    vendor                  "OSNEXUS"
-                    product                 "QUANTASTOR"
-                    path_grouping_policy    "multibus"
-                    failback                "immediate"
-                    path_selector           "round-robin 0"
-                    rr_weight               "uniform"
-                    rr_min_io               1
-                    path_checker            "tur"
-                }
+                 device {
+                    vendor                 "OSNEXUS"
+                    product                "QUANTASTOR"
+                    getuid_callout         "/lib/udev/scsi_id --whitelisted --replace-whitespace --device=/dev/%n"
+                    prio                   "alua"
+                    hardware_handler       "1 alua"
+                    path_grouping_policy   "group_by_prio"
+                    failback               "immediate"
+                    no_path_retry          10
+                    rr_min_io              1
+                    path_checker           "tur"
+                    rr_weight              "uniform"
+               }
             }
             blacklist_exceptions {
                 property "(ID_SCSI_VPD|ID_WWN|ID_SERIAL)"
