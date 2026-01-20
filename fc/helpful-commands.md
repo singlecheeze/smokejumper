@@ -10,7 +10,7 @@ https://mirror.openshift.com/pub/openshift-v4/clients/butane/
 
 *Helpful Script:*  
 ```
-./usr/bin/rescan-scsi-bus.sh
+./usr/bin/rescan-scsi-bus.sh -f -r -a -m
 ```
 ```
 Scanning SCSI subsystem for new devices
