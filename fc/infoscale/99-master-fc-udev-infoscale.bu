@@ -54,7 +54,7 @@ storage:
                     vendor                 "OSNEXUS"
                     product                "QUANTASTOR"
                     getuid_callout         "/lib/udev/scsi_id --whitelisted --replace-whitespace --device=/dev/%n"
-                    prio                   "alua"
+                    #prio                   "alua"
                     hardware_handler       "1 alua"
                     path_grouping_policy   "group_by_prio"
                     failback               "immediate"
@@ -63,12 +63,4 @@ storage:
                     path_checker           "tur"
                     rr_weight              "uniform"
                }
-            }
-            blacklist_exceptions {
-                property "(ID_SCSI_VPD|ID_WWN|ID_SERIAL)"
-                device {
-                    vendor "OSNEXUS"
-                    product "QUANTASTOR"
-            
-                }
             }
