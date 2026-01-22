@@ -31,7 +31,7 @@ spec:
           path: /etc/udev/rules.d/99-infoscale-queue.rules
         - contents:
             compression: gzip
-            source: data:;base64,H4sIAAAAAAAC/2yST2/aTBDG7/4UI0fvEWECL6SHHqiaSpEqogbS5NTVeHeMR6x3rf1jC1V898om4EAyt1n/Zp9nn7GiAqMOHv4mAADRkxOFYzJK74XBijycKt2TT3uqYKNEFXXgGkM5EJdUZCUwBMd5DASXlT58F+v7p4flzxRuYFOyB0eVbcjDlkI3KVFrGwMoqh1JDGwNtOgMm21ySHKNcqfZhzffihpj1bXKm9Yf01R09HQD386TqDX8fv2xhpeXle+/ti0rSKfz26yvxf+0QIWUF1OaI91leItZMfuSfgbPsnw2mS9m07usmOZyPsCHRFHDkk4Zw7E9dQDQkFHWfTT+uF7dvz6v0zNYO6uiDB/AX8/L1Wa53jw+DexVjmd2rDkfR0XN2EvPghWMRm3JgbpQqOsc1RolHU99jZJgNDqa/jruBv8zg8xN7dh+ljrqiANWolMtOhIlGqXp9Nh0Apdc90OJrbOxZrMVtdUs9x3XH4l8Lzq5AS+QdY5ydy3OVUWKMdCAGiv6yx0Ftx/QSXYmnBMVG3H9nMmlOVmS3NH7baUhuvT9LS3xtrzaUhoNF9ZVPXhIDsm/AAAA///ZQ3P8egMAAA==
+            source: data:;base64,H4sIAAAAAAAC/2yST2vbQBDF7/4Uw4ZCezCWY9dJCz2kNIVASWicNDl1Ge2OrMGrXbF/JEzxdy+SYyt2MifN6vf2zTxJU4HJxAD/RgAAKZCXhWey2mykxYoC7EtsKIieKthqWSUTucZYDsQxlVhLjNFzniLBcYmbH3J5fX9z9UvAGTyUHMBT5RoKsKLYKRUa41IETbUnhZGdhRa9ZbuCtiQLKXSPsZPmZFz7FT6eSA9mE8P5JGlqJkEFlqxhPG5LjmQ4ROo6T7VBRbvTUKMiGI81Nazo26QTfrDi02g7yg2qdad6yUtTY50+3e7F9q9tKtplcQbfD0o0Bv48/1zC09Nt6N+2LWsQs8V51tfFZ7pAjZQXM1ogXWZ4jlkx/yLeg+dZPp8uLuazy6yY5WoxwNvRboH9t4Vdu+8AoCGrnX87+N3y9vr5cSkOYO2dTiq+AX8/Xt0+XC0f7u4H9qz27N6LA03CASvR6xY9yRKtNrSfQkzhmOv+MLnyLtVsV7J2htWm4/ojmW9kZzfgBbLJUa1PzbmqSDNGGlDrZH+5p+g3AzrNDoT3smIrT9eZHg+nSlJreh2jiMmL17e0xKvyJD6RLBfOVz24HW1H/wMAAP//I+pF4YsDAAA=
           mode: 420
           overwrite: true
           path: /etc/multipath.conf
