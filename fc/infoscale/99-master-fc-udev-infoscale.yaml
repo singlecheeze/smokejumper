@@ -31,7 +31,7 @@ spec:
           path: /etc/udev/rules.d/99-infoscale-queue.rules
         - contents:
             compression: gzip
-            source: data:;base64,H4sIAAAAAAAC/3yTUW/aMBDH3/kUJ1eTtgcEFEa7hz10aychTXQrbenTrIt9Iac6duTYZNHa7z4lFAK0272d/Tvf3+e/NaUYTSjhTw8AIJbkZeqZrDa1tJhTCdsQNZWipVK2WubRBC4wZB1xSEXWEkPwnMRAcBhidikXVzezi+8CTuA24xI85W5NJawoNJUKjXExgKbCk8LAzkKF3rJd9Z57iUH1aLgML7o1ra3Tx11eev2y65w2mk7gy64SjYH7h28LWC7nZbtbVaxBjKenwzbOPtIZaqQkHdMU6XyIpzhMJ5/EW/BkmExG07PJ+HyYjhM17eDnnqY1K9rOGDbpNgOANVnt/Gvh14v51cPdQuzAwjsdVXgF/ry7mN9eLG6vbzr2aI47dmA4GURN60GpSpasod+vMg7UDIWazFNhUNFmtSxQEfT7G9GfB03hO7svid1bQ0cTsaMy9LpCTzJDqw1t7ypGcMg1fpIr72LBdiULZ1jVDdcuyaSWTbsOT5FNgurxuDnnOWnGQB1qnWwP9xR83aGj4Y7wXuZs5fF1RofiVEbqkfYfS4Toxf4pFfEqO3okES2nzuct+LzvYEm/FRWNv7cGKbwryIcaxPvmm3xdzOT9j8un2aVcLudPu5/zQfT+56Z/u+fALu1uI+hvAAAA//+OQV3CCgQAAA==
+            source: data:;base64,H4sIAAAAAAAC/2yST2/aTBDG7/4UI0fvEWECL6SHHqiaSpEqogbS5NTVeHeMR6x3rf1jC1V898om4EAyt1n/Zp9nn7GiAqMOHv4mAADRkxOFYzJK74XBijycKt2TT3uqYKNEFXXgGkM5EJdUZCUwBMd5DASXlT58F+v7p4flzxRuYFOyB0eVbcjDlkI3KVFrGwMoqh1JDGwNtOgMm21ySHKNcqfZhzffihpj1bXKm9Yf01R09HQD386TqDX8fv2xhpeXle+/ti0rSKfz26yvxf+0QIWUF1OaI91leItZMfuSfgbPsnw2mS9m07usmOZyPsCHRFHDkk4Zw7E9dQDQkFHWfTT+uF7dvz6v0zNYO6uiDB/AX8/L1Wa53jw+DexVjmd2rDkfR0XN2EvPghWMRm3JgbpQqOsc1RolHU99jZJgNDqa/jruBv8zg8xN7dh+ljrqiANWolMtOhIlGqXp9Nh0Apdc90OJrbOxZrMVtdUs9x3XH4l8Lzq5AS+QdY5ydy3OVUWKMdCAGiv6yx0Ftx/QSXYmnBMVG3H9nMmlOVmS3NH7baUhuvT9LS3xtrzaUhoNF9ZVPXhIDsm/AAAA///ZQ3P8egMAAA==
           mode: 420
           overwrite: true
           path: /etc/multipath.conf
