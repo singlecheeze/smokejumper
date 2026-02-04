@@ -47,7 +47,6 @@ storage:
                 devnode                     "^nvme"
                 # Blacklist all VXFS WWNs
                 wwid "36200000075e7adaebf3e6ae80a2a0f49"
-                wwid "36200000040b41674380f3bc60a2a0f49"
             }
             devices {
                  device {
