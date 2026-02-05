@@ -1,6 +1,8 @@
+### Installation  
 https://www.ibm.com/docs/en/fusion-software/2.12.0?topic=san-planning-prerequisites  
   
-A registry is required for operator deployment. To use internal registry:
+#### A registry is required for operator deployment  
+To use internal registry:
 ```
 [root@r730ocp5 core]# oc get -o jsonpath='{.spec}' configs.imageregistry.operator.openshift.io/cluster | jq '. | (.managementState, .storage)'
 "Removed"
@@ -16,12 +18,12 @@ No resources found in openshift-image-registry namespace.
 NAME             VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
 image-registry   4.20.3    False       True          True       18m     Available: The deployment does not have available replicas...
 ```
-Create a Pull Secret:  
+#### Create a Pull Secret:  
 ```
 oc create secret -n ibm-fusion-access generic fusion-pullsecret --from-literal=ibm-entitlement-key=<Put Key Here>
 ```
 
-Setup Mulitpath for your LUNs:
+#### Setup Mulitpath for your LUNs:
 ```
 [root@r730ocp5 core]# cat /etc/multipath.conf
 defaults {
@@ -49,11 +51,11 @@ devices {
    }
 }
 ```
-Rescan:
+#### Rescan:
 ```
 rescan-scsi-bus.sh -f -r -a -m
 ```
-Find LUNs and make sure multipath'd correctly:
+#### Find LUNs and make sure multipath'd correctly:
 ```
 [root@r730ocp5 core]# multipath -ll
 mpatha (362000000fa1ae7c3809efe6f0a2a0f49) dm-1 OSNEXUS,QUANTASTOR
@@ -79,7 +81,7 @@ size=931G features='1 queue_if_no_path' hwhandler='0' wp=rw
   `- 2:0:0:8  sdl 8:176 active ready running
 ```
 
-Get Device UUIDs (In this case I'm using two drives from each node):
+#### Get Device UUIDs (In this case I'm using two drives from each node):
 ```
 [root@r730ocp5 core]# udevadm info -q property -n /dev/dm-0
 DEVPATH=/devices/virtual/block/dm-0
@@ -140,7 +142,7 @@ TAGS=:systemd:
 CURRENT_TAGS=:systemd:
 ```
 
-Create FileSystemClaim:  
+#### Create FileSystemClaim:  
 Note: One drive is fine or use two or more like in the YAML  
 <img width="925" height="920" alt="image" src="https://github.com/user-attachments/assets/3980834d-9b5d-43e9-9bfd-99fcf3946da3" />
 ```
@@ -158,7 +160,8 @@ spec:
     - '0x62000000d9446f8a28835e060a2a0f49'
 ```
   
-For limiting cluster resource use: https://www.ibm.com/docs/en/scalecontainernative/5.2.3?topic=resources-cluster#roles  
+#### For limiting cluster resources:  
+https://www.ibm.com/docs/en/scalecontainernative/5.2.3?topic=resources-cluster#roles   
 Note: This didn't seem to lower the utilization post-apply
 <img width="1593" height="674" alt="image" src="https://github.com/user-attachments/assets/277c80a1-a7c8-424b-bdf5-add9465ce066" />
 ```yaml
@@ -176,8 +179,8 @@ spec:
         cpu: "4"
         memory: 8Gi
 ```
-
-Deleting a FileSystem:
+### Administration:  
+#### Deleting a FileSystem:
 ```
 [root@r730ocp5 core]# oc label filesystem big-fat-lun -n ibm-spectrum-scale scale.spectrum.ibm.com/allowDelete=
 filesystem.scale.spectrum.ibm.com/big-fat-lun labeled
@@ -186,6 +189,10 @@ filesystem.scale.spectrum.ibm.com/big-fat-lun labeled
 filesystem.scale.spectrum.ibm.com "big-fat-lun" deleted
 ```
 
-VM Migrations:
-Install Migration Toolkit for Containers
+### Appendix:  
+#### VM Migrations:  
+Install Migration Toolkit for Containers  
 Note: If you get an error that a disk isn't migratable and it's been migrated in the past, check the labels on the DataVolume and delete the one concerning live migration as it's probably pointing to an old resource.
+
+### Performance:  
+
