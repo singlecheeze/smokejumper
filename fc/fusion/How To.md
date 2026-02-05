@@ -83,63 +83,11 @@ size=931G features='1 queue_if_no_path' hwhandler='0' wp=rw
 
 #### Get Device UUIDs (In this case I'm using two drives from each node):
 ```
-[root@r730ocp5 core]# udevadm info -q property -n /dev/dm-0
-DEVPATH=/devices/virtual/block/dm-0
-DEVNAME=/dev/dm-0
-DEVTYPE=disk
-DISKSEQ=93
-MAJOR=253
-MINOR=0
-SUBSYSTEM=block
-USEC_INITIALIZED=266653037230
-DM_UDEV_DISABLE_LIBRARY_FALLBACK_FLAG=1
-DM_UDEV_PRIMARY_SOURCE_FLAG=1
-DM_SUBSYSTEM_UDEV_FLAG0=1
-DM_ACTIVATION=0
-DM_NAME=mpathc
-DM_UUID=mpath-362000000d9446f8a28835e060a2a0f49
-DM_SUSPENDED=0
-DM_UDEV_RULES_VSN=2
-MPATH_DEVICE_READY=1
-MPATH_SBIN_PATH=/sbin
-MPATH_UNCHANGED=1
-DM_TYPE=scsi
-DM_WWN=0x62000000d9446f8a28835e060a2a0f49
-DM_SERIAL=362000000d9446f8a28835e060a2a0f49
-NVME_HOST_IFACE=none
-SYSTEMD_READY=1
-DEVLINKS=/dev/disk/by-id/wwn-0x62000000d9446f8a28835e060a2a0f49 /dev/mapper/mpathc /dev/disk/by-id/dm-name-mpathc /dev/disk/by-id/scsi-362000000d9446f8a28835e060a2a0f49 /de>
-TAGS=:systemd:
-CURRENT_TAGS=:systemd:
-
-[root@r730ocp5 core]# udevadm info -q property -n /dev/dm-2
-DEVPATH=/devices/virtual/block/dm-2
-DEVNAME=/dev/dm-2
-DEVTYPE=disk
-DISKSEQ=94
-MAJOR=253
-MINOR=2
-SUBSYSTEM=block
-USEC_INITIALIZED=266653064400
-DM_UDEV_DISABLE_LIBRARY_FALLBACK_FLAG=1
-DM_UDEV_PRIMARY_SOURCE_FLAG=1
-DM_SUBSYSTEM_UDEV_FLAG0=1
-DM_ACTIVATION=0
-DM_NAME=mpathd
-DM_UUID=mpath-362000000de9068dd5df525300a2a0f49
-DM_SUSPENDED=0
-DM_UDEV_RULES_VSN=2
-MPATH_DEVICE_READY=1
-MPATH_SBIN_PATH=/sbin
-MPATH_UNCHANGED=1
-DM_TYPE=scsi
+[root@r730ocp5 core]# udevadm info -q property -n /dev/dm-2 | grep WWN
 DM_WWN=0x62000000de9068dd5df525300a2a0f49
-DM_SERIAL=362000000de9068dd5df525300a2a0f49
-NVME_HOST_IFACE=none
-SYSTEMD_READY=1
-DEVLINKS=/dev/disk/by-id/dm-name-mpathd /dev/disk/by-id/dm-uuid-mpath-362000000de9068dd5df525300a2a0f49 /dev/disk/by-id/wwn-0x62000000de9068dd5df525300a2a0f49 /dev/mapper/m>
-TAGS=:systemd:
-CURRENT_TAGS=:systemd:
+
+[root@r730ocp5 core]# udevadm info -q property -n /dev/dm-0 | grep WWN
+DM_WWN=0x62000000d9446f8a28835e060a2a0f49
 ```
 
 #### Create FileSystemClaim:  
