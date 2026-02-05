@@ -195,4 +195,26 @@ Install Migration Toolkit for Containers
 Note: If you get an error that a disk isn't migratable and it's been migrated in the past, check the labels on the DataVolume and delete the one concerning live migration as it's probably pointing to an old resource.
 
 ### Performance:  
+Hosts: 3x Dell R730xd, 48x Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz, 198 GB @2133 MHz, Emulex LightPulse LPe32002-M2 2-Port 32Gb FC HBA  
+SAN: QuantaStor 6.6.5.026+4f21833dd6, GigaByte R272-Z34 2U24, AMD EPYC 7302P 16-Core Processor, 24x Intel DC P4510 SSDPE2KX010T8 in RAID10, ZFS Sync Policy Standard, LZ4 Compression  
+  
+<details>
+    <summary>Win22K, No Virtio Custom, Fusion, Warm Cache</summary>
 
+<img width="797" height="960" alt="Win22KNoVirtioCustomFusionWarmCache" src="https://github.com/user-attachments/assets/b5546bb6-0eb5-4d07-a6b5-0ebf8a98021c" />
+  
+</details>
+
+<details>
+    <summary>Win22K, No Virtio Custom, Fusion, Warm Cache, Two Drives</summary>
+
+<img width="795" height="962" alt="Win22KNoVirtioCustomFusionWarmCacheTwoDrives" src="https://github.com/user-attachments/assets/7dd39ff9-5ec2-4f9d-b703-d07febf7a20d" />
+  
+</details>
+
+<details>
+    <summary>Win22K, Yes Virtio Custom, Fusion, Warm Cache</summary>
+
+<img width="795" height="963" alt="Win22KYesVirtioCustomFusionWarmCache" src="https://github.com/user-attachments/assets/635921da-7bf4-4486-9676-932a0a145474" />
+  
+</details>
