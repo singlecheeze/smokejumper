@@ -185,3 +185,7 @@ filesystem.scale.spectrum.ibm.com/big-fat-lun labeled
 [root@r730ocp5 core]# oc delete FileSystem big-fat-lun -n ibm-spectrum-scale
 filesystem.scale.spectrum.ibm.com "big-fat-lun" deleted
 ```
+
+VM Migrations:
+Install Migration Toolkit for Containers
+Note: If you get an error that a disk isn't migratable and it's been migrated in the past, check the labels on the DataVolume and delete the one concerning live migration as it's probably pointing to an old resource.
