@@ -1,3 +1,7 @@
+#### VM Migrations:  
+Install Migration Toolkit for Containers  
+Note: If you get an error that a disk isn't migratable and it's been migrated in the past, check the labels on the DataVolume and delete the one concerning live migration as it's probably pointing to an old resource.
+
 #### To use the internal registry:
 ```
 [root@r730ocp5 core]# oc get -o jsonpath='{.spec}' configs.imageregistry.operator.openshift.io/cluster | jq '. | (.managementState, .storage)'
