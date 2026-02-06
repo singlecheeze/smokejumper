@@ -27,10 +27,10 @@ A collection of load and scale testing tools for kubernetes
    - Rescan impact (Some sort of rescan delay?)
       - Need to batch the rescan "echo --- to host18/rescan" to insure rescans aren't issued in excess
    - How to hint to the CSI that it should map storage on the same node we are annotating the VM to be scheduled on
-4. Node Failure/Reboot (k8s)
+3. Node Failure/Reboot (k8s)
    - Graceful/Abrupt
-5. API Server (iBox)
-6. CSI-Clone vs. Snapshot
+4. API Server (iBox)
+5. CSI-Clone vs. Snapshot
 
 # Helpful links  
 https://docs.oracle.com/en/operating-systems/oracle-linux/6/admin/query-udevandsysfs.html  
