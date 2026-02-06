@@ -2,6 +2,29 @@
 Install Migration Toolkit for Containers  
 Note: If you get an error that a disk isn't migratable and it's been migrated in the past, check the labels on the DataVolume and delete the one concerning live migration as it's probably pointing to an old resource.
 
+#### VM Disk Performance (VirtIO Disks):
+VM disk performance may be sped up by adding additional worker storage threads withing the VirtIO storage subsystem in the VM YAML:  
+Ref: https://developers.redhat.com/blog/2025/06/23/feature-introduction-multiple-iothreads-openshift-virtualization#overview  
+```yaml
+ spec:
+    domain:
+      cpu:
+        cores: 1
+        sockets: 16
+        threads: 1
+      memory:
+        guest: 16Gi
+      ioThreadsPolicy: supplementalPool
+      ioThreads:
+        supplementalPoolThreadCount: 4
+      devices:
+        blockMultiQueue: true
+        disks:
+        - name: rootdisk
+          disk:
+            bus: virtio
+```
+
 #### To use the internal registry:
 ```
 [root@r730ocp5 core]# oc get -o jsonpath='{.spec}' configs.imageregistry.operator.openshift.io/cluster | jq '. | (.managementState, .storage)'
