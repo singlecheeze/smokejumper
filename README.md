@@ -20,7 +20,7 @@ A collection of load and scale testing tools for kubernetes
 
 # Testing order
 
-1. K8s VM Scheduling distrobution
+1. K8s VM Scheduling distribution
    - Max paths per host
 2. Iterate Batch
    - w/Active IO
