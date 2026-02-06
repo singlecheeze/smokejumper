@@ -17,6 +17,15 @@ No resources found in openshift-image-registry namespace.
 [root@r730ocp5 core]# oc get clusteroperator image-registry
 NAME             VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
 image-registry   4.20.3    False       True          True       18m     Available: The deployment does not have available replicas...
+
+[root@r730ocp5 core]# oc patch configs.imageregistry.operator.openshift.io/cluster --type merge -p '{"spec":{"defaultRoute":true}}'
+config.imageregistry.operator.openshift.io/cluster patched
+
+To configure storage (Deleted on reboot):
+oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"emptyDir":{}}}}'
+
+OR persisted (Leave the claim field blank to allow the automatic creation of an image-registry-storage PVC of 100 GB)
+oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"pvc":{"claim":{}}}}}'
 ```
 #### Create a Pull Secret:  
 ```
