@@ -24,6 +24,14 @@ Ref: https://developers.redhat.com/blog/2025/06/23/feature-introduction-multiple
           disk:
             bus: virtio
 ```
+Specifically:
+```
+ioThreadsPolicy: supplementalPool
+ ioThreads:
+   supplementalPoolThreadCount: 4
+ devices:
+   blockMultiQueue: true
+```
 
 #### To use the internal registry:
 ```
