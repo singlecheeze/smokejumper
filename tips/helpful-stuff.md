@@ -25,7 +25,7 @@ Ref: https://developers.redhat.com/blog/2025/06/23/feature-introduction-multiple
             bus: virtio
 ```
 Specifically:
-```
+```yaml
 ioThreadsPolicy: supplementalPool
  ioThreads:
    supplementalPoolThreadCount: 4
