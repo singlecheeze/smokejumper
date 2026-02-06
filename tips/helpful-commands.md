@@ -23,3 +23,25 @@ oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patc
 OR persisted (Leave the claim field blank to allow the automatic creation of an image-registry-storage PVC of 100 GB)
 oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"pvc":{"claim":{}}}}}'
 ```
+
+#### Manually clean up disk space on nodes:
+Find Large Directories:
+```
+du -sh /var/lib/containers/storage/*
+```
+Removes stopped containers, unused images, networks, build cache:
+```
+podman system prune -f
+```
+Removes all unused images:
+```
+podman image prune -a -f
+```
+TRIM (Discard):
+```
+fstrim -av
+```
+Or do it all:
+```
+podman system prune -f && podman image prune -a -f && fstrim -av
+```
