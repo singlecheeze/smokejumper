@@ -123,11 +123,6 @@ filesystem.scale.spectrum.ibm.com/big-fat-lun labeled
 filesystem.scale.spectrum.ibm.com "big-fat-lun" deleted
 ```
 
-### Appendix:  
-#### VM Migrations:  
-Install Migration Toolkit for Containers  
-Note: If you get an error that a disk isn't migratable and it's been migrated in the past, check the labels on the DataVolume and delete the one concerning live migration as it's probably pointing to an old resource.
-
 ### Performance:  
 Hosts: 3x Dell R730xd, 48x Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz, 198 GB @2133 MHz, Emulex LightPulse LPe32002-M2 2-Port 32Gb FC HBA  
 SAN: QuantaStor 6.6.5.026+4f21833dd6, GigaByte R272-Z34 2U24, AMD EPYC 7302P 16-Core Processor, 24x Intel DC P4510 SSDPE2KX010T8 in RAID10, ZFS Sync Policy Standard, LZ4 Compression  
