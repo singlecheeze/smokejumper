@@ -17,17 +17,17 @@ https://www.veritas.com/support/en_US/doc/168721626-168743109-1
 9. You can now apply the license. Click Operators > Installed Operators in the left frame.
 10. In the screen that opens, click Create License in the upper-right corner of your screen.
 11. In License Edition, select the type of license.
-   1. Note: If you want to install and configure Disaster Recovery (DR), you must have Enterprise type of license.
+    1. Note: If you want to install and configure Disaster Recovery (DR), you must have Enterprise type of license.
 12. Click Create to apply the license.
 13. Click Create InfoScaleCluster in the upper-right corner of your screen. The following screen opens.
 14. Choose a project to create InfoScale cluster. Enter Name, Namespace, and InfoScale ClusterID for the cluster. If you are installing in an airgapped environment, enter Image Registry for pulling images. To install on a system with Internet connectivity, do not enter any value for Image Registry.
-   1. Note: If you do not enter InfoScale ClusterID, a ClusterID is randomly generated and assigned. The ClusterID is suffixed to the disk group.
+    1. Note: If you do not enter InfoScale ClusterID, a ClusterID is randomly generated and assigned. The ClusterID is suffixed to the disk group.
 15. Click InfoScale Cluster Information. Enter information about the nodes here. Enter Node name. Optionally, you can enter IP addresses of nodes in Node IPs and the device path of the disk that you want to exclude from the InfoScale disk group in Exclude-device list. You can also add fencing devices in Fencing device list. For each node, you must add two IP addresses.
-  1. Note: OpenShift cluster must have at least two nodes as minimum two nodes are needed to form an InfoScale cluster.
+    1. Note: OpenShift cluster must have at least two nodes as minimum two nodes are needed to form an InfoScale cluster.
 16. Click Create to create an InfoScale cluster. Cluster formation begins. Watch the status message.
-  1. It changes to "FencingConfigured"
-  2. Then changes to "DgCreated"
-  3. Finally "Running"
+    1. It changes to "FencingConfigured"
+    2. Then changes to "DgCreated"
+    3. Finally "Running"
   
 ### License
 ```yaml
