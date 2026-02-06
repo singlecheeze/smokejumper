@@ -151,6 +151,136 @@ spec:
 ```
 
 ### Appendix
+For certain arrays (Like QuantaStor), InfoScale will need a profile that doesn't exist (Mainly driven by Arctera HCL), so one will need to be created.  
+Ref: https://www.veritas.com/support/en_US/doc/79722584-159001485-0/v31177640-159001485  
+Note: This currently does not persist past reboot of the node in infoscale-sds-operator.v9.1.0 but Arctera is working on it.  
+Must run from SDS pods:
+```
+sh-5.1# vxddladm addjbod vid=OSNEXUS pid="QUANTASTOR" serialnum=18/080/4/0x14
+
+sh-5.1# vxdisk list
+DEVICE          TYPE            DISK         GROUP        STATUS
+disk_0       auto:none       -            -            online invalid
+disk_1       auto:cdsdisk    disk_0       vrts_kube_dg-4628 online clone_disk shared
+disk_2       auto:none       -            -            online invalid
+
+sh-5.1# vxddladm listjbod
+VID      PID                SerialNum               CabinetNum        Policy
+                      (Cmd/PageCode/off/len)  (Cmd/PageCode/off/len) 
+==============================================================================
+OSNEXUS  QUANTASTOR      18/-1/4/20                  -                Disk      
+
+sh-5.1# vxdisk set disk_1 clone=off
+
+sh-5.1# vxdisk list
+DEVICE          TYPE            DISK         GROUP        STATUS
+disk_0       auto:none       -            -            online invalid
+disk_1       auto:cdsdisk    disk_0       vrts_kube_dg-4628 online shared
+disk_2       auto:none       -            -            online invalid
+```
+`serialnum=18/080/4/0x14` is derived from:
+```
+sh-5.1# /etc/vx/diag.d/vxscsiinq -d /dev/vx/rdmp/disk_1
+
+Inquiry for /dev/vx/rdmp/disk_1, evpd 0x0, page code 0x0
+Peripheral Qualifier/Device Type : 0
+Removable bit : 0
+Device type modifier : 0
+ISO Version : 0
+ECMA Version : 0
+ANSI Version : 6
+AEN Capability : 0
+Terminat I/O Capability : 0
+Additional Length : 3f
+Relative Addressing : 0
+32 bit I/O : 0
+16 bit I/O : 0
+Sync capabilities : 0
+Linked command : 0
+Command Queing : 1
+Soft Reset : 0
+Vendor Identification : OSNEXUS 
+Product Identification : QUANTASTOR      
+Revision Number : 390 
+Serial Number : 
+        /dev/vx/rdmp/disk_1: Raw data size 68
+Bytes:   0 -   7    0x00  0x00  0x06  0x22  0x3f  0x08  0x10  0x02  ..."?...
+Bytes:   8 -  15    0x4f  0x53  0x4e  0x45  0x58  0x55  0x53  0x20  OSNEXUS 
+Bytes:  16 -  23    0x51  0x55  0x41  0x4e  0x54  0x41  0x53  0x54  QUANTAST
+Bytes:  24 -  31    0x4f  0x52  0x20  0x20  0x20  0x20  0x20  0x20  OR      
+Bytes:  32 -  39    0x33  0x39  0x30  0x20  0x00  0x00  0x00  0x00  390 ....
+Bytes:  40 -  47    0x00  0x00  0x00  0x00  0x00  0x00  0x00  0x00  ........
+Bytes:  48 -  55    0x00  0x00  0x00  0x00  0x00  0x00  0x00  0x00  ........
+Bytes:  56 -  63    0x00  0x00  0x00  0x8b  0x0d  0xa0  0x09  0x00  ........
+Bytes:  64 -  67    0x04  0x63  0x04  0xc0                          .c..
+
+
+sh-5.1# /etc/vx/diag.d/vxscsiinq -d -e 1 -p 0x80 /dev/vx/rdmp/disk_1
+
+Inquiry for /dev/vx/rdmp/disk_1, evpd 0x1, page code 0x80
+Peripheral Qualifier/Device Type : 0
+Length of serial number          : 20
+Product serial number            : 75e7adaebf3e6ae80a2a
+        /dev/vx/rdmp/disk_1: Raw data size 24
+Bytes:   0 -   7    0x00  0x80  0x00  0x14  0x37  0x35  0x65  0x37  ....75e7
+Bytes:   8 -  15    0x61  0x64  0x61  0x65  0x62  0x66  0x33  0x65  adaebf3e
+Bytes:  16 -  23    0x36  0x61  0x65  0x38  0x30  0x61  0x32  0x61  6ae80a2a
+
+
+sh-5.1# /etc/vx/diag.d/vxscsiinq -d -e 1 -p 0x83 /dev/vx/rdmp/disk_1
+
+Inquiry for /dev/vx/rdmp/disk_1, evpd 0x1, page code 0x83
+------- Identifier Descriptor 1 -------
+ID type             : 0x1 (T10 vendor ID based)
+Protocol Identifier : 0x0
+Code set            : 0x2
+PIV                 : 0x0
+Association         : 0x0
+Length              : 0x21
+Data                : OSNEXUS a2a0f49bdcea1aa-75e7adaeb
+------- Identifier Descriptor 2 -------
+ID type             : 0x4 (Relative target port)
+Protocol Identifier : 0x0
+Code set            : 0x1
+PIV                 : 0x0
+Association         : 0x1
+Length              : 0x4
+Data                : 000004bd
+------- Identifier Descriptor 3 -------
+ID type             : 0x3 (NAA)
+Protocol Identifier : 0x0
+Code set            : 0x1
+PIV                 : 0x0
+Association         : 0x0
+Length              : 0x10
+Data                : 6200000075e7adaebf3e6ae80a2a0f49
+        /dev/vx/rdmp/disk_1: Raw data size 69
+Bytes:   0 -   7    0x00  0x83  0x00  0x41  0x02  0x01  0x00  0x21  ...A...!
+Bytes:   8 -  15    0x4f  0x53  0x4e  0x45  0x58  0x55  0x53  0x20  OSNEXUS 
+Bytes:  16 -  23    0x61  0x32  0x61  0x30  0x66  0x34  0x39  0x62  a2a0f49b
+Bytes:  24 -  31    0x64  0x63  0x65  0x61  0x31  0x61  0x61  0x2d  dcea1aa-
+Bytes:  32 -  39    0x37  0x35  0x65  0x37  0x61  0x64  0x61  0x65  75e7adae
+Bytes:  40 -  47    0x62  0x01  0x14  0x00  0x04  0x00  0x00  0x04  b.......
+Bytes:  48 -  55    0xbd  0x01  0x03  0x00  0x10  0x62  0x00  0x00  .....b..
+Bytes:  56 -  63    0x00  0x75  0xe7  0xad  0xae  0xbf  0x3e  0x6a  .u....>j
+Bytes:  64 -  68    0xe8  0x0a  0x2a  0x0f  0x49                    ..*.I
+```
+
+>The vid=OSNEXUS parameter is derived from the Standard Inquiry page (page 0x00), where the output explicitly reports Vendor Identification : OSNEXUS. This value is also visible in the raw hex dump at bytes 8–15, confirming the vendor string used by the device.
+>
+>The optional pid="QUANTASTOR" parameter comes from the same Standard Inquiry page (page 0x00). The output shows Product Identification : QUANTASTOR, which is located in bytes 16–31 of the inquiry data. While this parameter is not strictly required, including it helps ensure the rule applies only to this specific product and not to other devices from the same vendor.
+>
+>The serialnum field follows the required format opcode/pagecode/offset/length. The opcode value 18 corresponds to the SCSI INQUIRY command (0x12 in hexadecimal), as defined in the procedure. 
+>
+>The pagecode 080 refers to VPD page 0x80, which is the Unit Serial Number page. This page was queried using vxscsiinq -d -e 1 -p 0x80, and the output confirms that page 0x80 is supported and returns a valid serial number.
+>
+>The offset value 4 indicates the starting byte of the actual serial number within the page 0x80 response. In the raw hex dump, bytes 0–3 represent the page header (00 80 00 14), and the serial string begins at byte 4, where the ASCII characters of the serial number are stored.
+>
+>The length value 0x14 represents the size of the serial number in bytes. The output explicitly states Length of serial number : 20, which corresponds to hexadecimal value 0x14. This is also confirmed by the length field in bytes 2–3 of the page 0x80 header. 
+>
+>Together, these fields uniquely identify the disk using a stable and device-provided serial number, allowing Veritas DMP to correctly recognize and manage the device as a JBOD.
+>
+
 Helpful Commands from an SDS Pod (infoscale-sds-59131-1eb7816cdb4bd7f3-2grq4)
 ```
 sh-5.1# vxdisk list
